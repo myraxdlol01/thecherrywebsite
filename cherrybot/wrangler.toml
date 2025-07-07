@@ -1,9 +1,5 @@
-name = "my-bot-website"
-type = "static"
-
-account_id = "your-cloudflare-account-id"
+name = "cherrybot"
 compatibility_date = "2025-07-07"
 
 [site]
-bucket = "./"         # path to your index.html
-entry-point = "."     # not strictly needed for static
+bucket = "./cherrybot"  # Directory containing your static assets
