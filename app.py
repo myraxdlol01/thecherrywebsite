@@ -1,3 +1,6 @@
+@app.route('/static-test')
+def static_test():
+    return render_template('static_test.html')
 import os
 from flask import Flask, render_template, redirect, url_for, session, request, jsonify
 from requests_oauthlib import OAuth2Session
