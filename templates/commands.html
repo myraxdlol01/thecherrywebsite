@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>commands - cherrybot</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="/">home</a></li>
+      <li><a href="/commands" class="active">commands</a></li>
+      <li><a href="/faq">faq</a></li>
+      <li><a href="/dashboard">dashboard</a></li>
+    </ul>
+  </nav>
+  <main>
+    <h1>commands</h1>
+    <section>
+      <ul>
+        {% for cmd in commands %}
+        <li><strong>{{ cmd.name }}</strong>: {{ cmd.desc }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 cherrybot
+  </footer>
+</body>
+</html>
