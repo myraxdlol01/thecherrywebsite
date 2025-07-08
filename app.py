@@ -108,4 +108,4 @@ def guild_dashboard(guild_id):
     return render_template('guild_dashboard.html', guild_id=guild_id, settings=settings)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True)
