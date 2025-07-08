@@ -24,7 +24,7 @@
         </ul>
     </nav>
 
-    <main>
+    <main id="main-content">
         <div class="discord-login-container">
             <div class="discord-login-card">
                 <img src="bot-avatar.jpg" alt="Discord Logo" class="discord-logo">
@@ -40,5 +40,44 @@
     <footer>
         <p>made with care by chérie</p>
     </footer>
+
+    <script>
+        // Check if user is authenticated
+        document.addEventListener('DOMContentLoaded', function() {
+            const authCode = sessionStorage.getItem('discord_auth_code');
+            const mainContent = document.getElementById('main-content');
+            
+            if (authCode) {
+                // Show loading state
+                mainContent.innerHTML = `
+                    <div class="loading-container">
+                        <div class="loading-spinner"></div>
+                        <p>Loading your servers...</p>
+                    </div>
+                `;
+                
+                // Clear the auth code since we've used it
+                sessionStorage.removeItem('discord_auth_code');
+                
+                // For now, show a temporary success message
+                setTimeout(() => {
+                    mainContent.innerHTML = `
+                        <div class="dashboard-container">
+                            <div class="dashboard-card">
+                                <h2>Successfully Logged In!</h2>
+                                <p>The dashboard is currently under development. Check back soon for server management features!</p>
+                                <button onclick="logout()" class="discord-login-button">Logout</button>
+                            </div>
+                        </div>
+                    `;
+                }, 2000);
+            }
+        });
+
+        function logout() {
+            sessionStorage.clear();
+            window.location.href = 'index.html';
+        }
+    </script>
 </body>
 </html> 
