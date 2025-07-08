@@ -43,26 +43,7 @@ def faq():
 
 @app.route('/commands')
 def commands():
-    # Dynamically load commands from commands.py
-    import importlib.util
-    import os
-    commands_path = os.path.join(os.path.dirname(__file__), 'commands.py')
-    spec = importlib.util.spec_from_file_location('commands', commands_path)
-    commands_mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(commands_mod)
-    # Build a dict of categories to commands
-    categories = commands_mod.COMMAND_CATEGORIES
-    commands_list = commands_mod.COMMANDS_LIST
-    commands_by_cat = {}
-    for cat, cat_desc in categories.items():
-        commands_by_cat[cat] = {
-            'desc': cat_desc,
-            'cmds': [
-                {'name': name, 'desc': desc}
-                for name, desc, c in commands_list if c == cat
-            ]
-        }
-    return render_template('commands.html', commands_by_cat=commands_by_cat)
+    return render_template('commands.html')
 
 @app.route('/dashboard')
 def dashboard():
