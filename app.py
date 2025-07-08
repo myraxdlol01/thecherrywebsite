@@ -1,6 +1,3 @@
-@app.route('/static-test')
-def static_test():
-    return render_template('static_test.html')
 import os
 from flask import Flask, render_template, redirect, url_for, session, request, jsonify
 from requests_oauthlib import OAuth2Session
@@ -18,6 +15,10 @@ API_BASE_URL = 'https://discord.com/api'
 OAUTH2_URL = API_BASE_URL + '/oauth2/authorize'
 TOKEN_URL = API_BASE_URL + '/oauth2/token'
 SCOPE = ['identify', 'guilds']
+
+@app.route('/static-test')
+def static_test():
+    return render_template('static_test.html')
 
 
 def make_session(token=None, state=None, scope=None):
