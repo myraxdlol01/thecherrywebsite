@@ -13,11 +13,11 @@
     --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.3);
     --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.4);
     --gradient-red: linear-gradient(135deg, var(--accent-red) 0%, #ff6666 100%);
-    --bg-color: #ffffff;
-    --text-color: #333333;
-    --accent-color: #ff69b4;
-    --nav-bg: #f8f9fa;
-    --border-color: #e1e4e8;
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --accent-color: #ff0000;
+    --nav-bg: #0a0a0a;
+    --border-color: #333333;
 }
 
 /* Reset & Base Styles */
@@ -690,12 +690,11 @@ button {
   border-radius: 6px;
   padding: 0.5rem 1rem;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Loading state */
@@ -720,4 +719,24 @@ button:hover {
   to {
     transform: rotate(360deg);
   }
+}
+
+/* FAQ specific styles */
+.faq-question {
+  color: var(--accent-color);
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.faq-answer {
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.faq-section h2 {
+  color: var(--accent-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.8rem;
 }
