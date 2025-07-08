@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>cherry dashboard</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="dashboard.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -39,24 +40,22 @@
     <script>
         function debugLog(message) {
             console.log(message);
-            const debugInfo = document.createElement('p');
-            debugInfo.style.textAlign = 'center';
-            debugInfo.style.color = '#666';
-            debugInfo.style.fontSize = '12px';
-            debugInfo.style.marginTop = '10px';
+            const debugInfo = document.createElement('div');
+            debugInfo.className = 'debug-info';
             debugInfo.textContent = message;
-            document.getElementById('main-content').appendChild(debugInfo);
+            document.body.appendChild(debugInfo);
+            setTimeout(() => debugInfo.remove(), 3000);
         }
 
         function showLoginCard() {
             const mainContent = document.getElementById('main-content');
             mainContent.innerHTML = `
-                <div class="discord-login-container">
+                <div class="dashboard-container">
                     <div class="discord-login-card">
                         <img src="bot-avatar.jpg" alt="Discord Logo" class="discord-logo">
                         <h2>Welcome to Cherry Dashboard</h2>
                         <p>Please login with Discord to manage your server settings</p>
-                        <a href="https://discord.com/oauth2/authorize?client_id=1391355916502433874&permissions=8&response_type=code&redirect_uri=+https%3A%2F%2Fthecherrywebsite.pages.dev%2Fcallback.html&integration_type=0&scope=bot+identify+guilds+applications.commands" class="discord-login-button">
+                        <a href="https://discord.com/oauth2/authorize?client_id=1391355916502433874&permissions=8&response_type=code&redirect_uri=+https%3A%2F%2Fthecherrywebsite.pages.dev%2Fcallback.html&integration_type=0&scope=bot+identify+guilds+applications.commands" class="button">
                             Login with Discord
                         </a>
                     </div>
@@ -87,7 +86,7 @@
                         <img src="https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png" 
                              alt="${userData.username}" class="user-avatar">
                         <h2>Welcome, ${userData.username}</h2>
-                        <button onclick="logout()" class="discord-login-button">Logout</button>
+                        <button onclick="logout()" class="button">Logout</button>
                     </div>
                     
                     <div class="servers-section">
@@ -101,7 +100,6 @@
         }
 
         function openGuildSettings(guildId) {
-            // Store the selected guild ID
             localStorage.setItem('selected_guild_id', guildId);
             window.location.href = `guild_dashboard.html`;
         }

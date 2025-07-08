@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Server Settings - Cherry Dashboard</title>
+    <title>cherry server settings</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="guild_dashboard.css" />
 </head>
 <body>
     <header>
@@ -27,7 +28,7 @@
     <main id="main-content">
         <div class="loading-container">
             <div class="loading-spinner"></div>
-            <p>Loading server settings...</p>
+            <p>Loading...</p>
         </div>
     </main>
 
@@ -36,135 +37,184 @@
     </footer>
 
     <script>
-        function debugLog(message) {
-            console.log(message);
-            const debugInfo = document.createElement('p');
-            debugInfo.style.textAlign = 'center';
-            debugInfo.style.color = '#666';
-            debugInfo.style.fontSize = '12px';
-            debugInfo.style.marginTop = '10px';
-            debugInfo.textContent = message;
-            document.getElementById('main-content').appendChild(debugInfo);
-        }
-
-        function showLoginCard() {
-            window.location.href = 'dashboard.html';
-        }
-
         function showGuildSettings(guildData) {
             const mainContent = document.getElementById('main-content');
-            
             mainContent.innerHTML = `
-                <div class="dashboard-container">
+                <div class="guild-dashboard">
+                    <a href="dashboard.html" class="back-button">
+                        ← Back to Dashboard
+                    </a>
+
                     <div class="guild-info">
                         <img src="${guildData.icon 
                             ? `https://cdn.discordapp.com/icons/${guildData.id}/${guildData.icon}.png` 
                             : 'bot-avatar.jpg'}" 
                             alt="${guildData.name}" class="server-icon">
                         <h2>${guildData.name}</h2>
-                        <a href="dashboard.html" class="back-button">← Back to Servers</a>
                     </div>
-                    
+
                     <div class="settings-grid">
+                        <!-- Welcome Messages -->
                         <div class="settings-card">
-                            <h3>Welcome Message</h3>
+                            <h3>Welcome Messages</h3>
                             <div class="setting-group">
-                                <label for="welcome-enabled">Enable Welcome Messages:</label>
-                                <input type="checkbox" id="welcome-enabled" 
-                                       ${guildData.settings?.welcome_enabled ? 'checked' : ''}>
+                                <label for="welcome-enabled">Enable Welcome Messages</label>
+                                <input type="checkbox" id="welcome-enabled" name="welcome-enabled">
                             </div>
                             <div class="setting-group">
-                                <label for="welcome-channel">Welcome Channel:</label>
-                                <select id="welcome-channel">
-                                    ${guildData.channels?.map(channel => 
-                                        `<option value="${channel.id}" 
-                                            ${channel.id === guildData.settings?.welcome_channel ? 'selected' : ''}>
-                                            #${channel.name}
-                                        </option>`
-                                    ).join('')}
+                                <label for="welcome-channel">Welcome Channel</label>
+                                <select id="welcome-channel" name="welcome-channel">
+                                    <option value="">Select a channel</option>
                                 </select>
+                                <div class="setting-help">Choose the channel where welcome messages will be sent</div>
                             </div>
                             <div class="setting-group">
-                                <label for="welcome-message">Welcome Message:</label>
-                                <textarea id="welcome-message" rows="3">${guildData.settings?.welcome_message || 'Welcome {user} to {server}!'}</textarea>
-                                <p class="setting-help">Use {user} for username and {server} for server name</p>
+                                <label for="welcome-message">Welcome Message</label>
+                                <textarea id="welcome-message" name="welcome-message" rows="3" 
+                                    placeholder="Welcome {user} to {server}!"></textarea>
+                                <div class="setting-help">Use {user} for username and {server} for server name</div>
                             </div>
                         </div>
 
-                        <div class="settings-card">
-                            <h3>Leveling System</h3>
-                            <div class="setting-group">
-                                <label for="leveling-enabled">Enable Leveling:</label>
-                                <input type="checkbox" id="leveling-enabled" 
-                                       ${guildData.settings?.leveling_enabled ? 'checked' : ''}>
-                            </div>
-                            <div class="setting-group">
-                                <label for="xp-rate">XP Rate:</label>
-                                <input type="range" id="xp-rate" min="0.5" max="2" step="0.1" 
-                                       value="${guildData.settings?.xp_rate || 1}">
-                                <span id="xp-rate-value">${guildData.settings?.xp_rate || 1}x</span>
-                            </div>
-                        </div>
-
+                        <!-- Auto Roles -->
                         <div class="settings-card">
                             <h3>Auto Roles</h3>
                             <div class="setting-group">
-                                <label for="autorole-enabled">Enable Auto Roles:</label>
-                                <input type="checkbox" id="autorole-enabled" 
-                                       ${guildData.settings?.autorole_enabled ? 'checked' : ''}>
+                                <label for="autorole-enabled">Enable Auto Roles</label>
+                                <input type="checkbox" id="autorole-enabled" name="autorole-enabled">
                             </div>
                             <div class="setting-group">
-                                <label for="autorole">Default Role:</label>
-                                <select id="autorole">
-                                    ${guildData.roles?.map(role => 
-                                        `<option value="${role.id}" 
-                                            ${role.id === guildData.settings?.autorole_id ? 'selected' : ''}>
-                                            @${role.name}
-                                        </option>`
-                                    ).join('')}
+                                <label for="autorole-roles">Auto-assign Roles</label>
+                                <select id="autorole-roles" name="autorole-roles" multiple>
+                                    <option value="">Loading roles...</option>
                                 </select>
+                                <div class="setting-help">Select roles to automatically assign to new members</div>
+                            </div>
+                        </div>
+
+                        <!-- Moderation -->
+                        <div class="settings-card">
+                            <h3>Moderation Settings</h3>
+                            <div class="setting-group">
+                                <label for="mod-log-channel">Moderation Log Channel</label>
+                                <select id="mod-log-channel" name="mod-log-channel">
+                                    <option value="">Select a channel</option>
+                                </select>
+                            </div>
+                            <div class="setting-group">
+                                <label for="auto-mod">Auto Moderation</label>
+                                <input type="checkbox" id="auto-mod" name="auto-mod">
+                                <div class="setting-help">Automatically moderate spam, inappropriate content, and more</div>
+                            </div>
+                        </div>
+
+                        <!-- Custom Commands -->
+                        <div class="settings-card">
+                            <h3>Custom Commands</h3>
+                            <div class="setting-group">
+                                <label for="custom-prefix">Custom Prefix</label>
+                                <input type="text" id="custom-prefix" name="custom-prefix" 
+                                    placeholder="Default: !">
+                            </div>
+                            <div class="setting-group">
+                                <label for="custom-commands">Custom Commands</label>
+                                <textarea id="custom-commands" name="custom-commands" rows="4" 
+                                    placeholder="Format: command:response"></textarea>
+                                <div class="setting-help">One command per line, format: command:response</div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="settings-actions">
                         <button onclick="saveSettings()" class="save-button">Save Changes</button>
                     </div>
                 </div>
             `;
 
-            // Add event listeners
-            document.getElementById('xp-rate').addEventListener('input', function() {
-                document.getElementById('xp-rate-value').textContent = this.value + 'x';
-            });
+            // Load channels for dropdowns
+            loadChannels();
+            loadRoles();
+            loadCurrentSettings();
+        }
+
+        function loadChannels() {
+            const token = localStorage.getItem('discord_access_token');
+            const tokenType = localStorage.getItem('discord_token_type');
+            const guildId = localStorage.getItem('selected_guild_id');
+
+            fetch(`https://discord.com/api/guilds/${guildId}/channels`, {
+                headers: {
+                    Authorization: `${tokenType} ${token}`
+                }
+            })
+            .then(response => response.json())
+            .then(channels => {
+                const textChannels = channels.filter(channel => channel.type === 0);
+                const channelOptions = textChannels.map(channel => 
+                    `<option value="${channel.id}">#${channel.name}</option>`
+                ).join('');
+
+                document.getElementById('welcome-channel').innerHTML = 
+                    '<option value="">Select a channel</option>' + channelOptions;
+                document.getElementById('mod-log-channel').innerHTML = 
+                    '<option value="">Select a channel</option>' + channelOptions;
+            })
+            .catch(error => console.error('Error loading channels:', error));
+        }
+
+        function loadRoles() {
+            const token = localStorage.getItem('discord_access_token');
+            const tokenType = localStorage.getItem('discord_token_type');
+            const guildId = localStorage.getItem('selected_guild_id');
+
+            fetch(`https://discord.com/api/guilds/${guildId}/roles`, {
+                headers: {
+                    Authorization: `${tokenType} ${token}`
+                }
+            })
+            .then(response => response.json())
+            .then(roles => {
+                const roleOptions = roles
+                    .filter(role => role.name !== '@everyone')
+                    .map(role => `<option value="${role.id}">${role.name}</option>`)
+                    .join('');
+
+                document.getElementById('autorole-roles').innerHTML = roleOptions;
+            })
+            .catch(error => console.error('Error loading roles:', error));
+        }
+
+        function loadCurrentSettings() {
+            // Here you would load the current settings from your backend
+            // For now, we'll just simulate it
+            console.log('Loading current settings...');
         }
 
         function saveSettings() {
-            const guildId = localStorage.getItem('selected_guild_id');
-            const token = localStorage.getItem('discord_access_token');
+            // Collect all settings
             const settings = {
-                welcome_enabled: document.getElementById('welcome-enabled').checked,
-                welcome_channel: document.getElementById('welcome-channel').value,
-                welcome_message: document.getElementById('welcome-message').value,
-                leveling_enabled: document.getElementById('leveling-enabled').checked,
-                xp_rate: parseFloat(document.getElementById('xp-rate').value),
-                autorole_enabled: document.getElementById('autorole-enabled').checked,
-                autorole_id: document.getElementById('autorole').value
+                welcomeEnabled: document.getElementById('welcome-enabled').checked,
+                welcomeChannel: document.getElementById('welcome-channel').value,
+                welcomeMessage: document.getElementById('welcome-message').value,
+                autoroleEnabled: document.getElementById('autorole-enabled').checked,
+                autoroleRoles: Array.from(document.getElementById('autorole-roles').selectedOptions).map(opt => opt.value),
+                modLogChannel: document.getElementById('mod-log-channel').value,
+                autoMod: document.getElementById('auto-mod').checked,
+                customPrefix: document.getElementById('custom-prefix').value,
+                customCommands: document.getElementById('custom-commands').value
             };
 
-            // Here you would typically send these settings to your backend
-            debugLog('Settings saved! (Frontend only - backend integration needed)');
-            
+            // Here you would send these settings to your backend
+            console.log('Saving settings:', settings);
+
             // Show success message
             const successMsg = document.createElement('div');
             successMsg.className = 'success-message';
             successMsg.textContent = 'Settings saved successfully!';
             document.querySelector('.settings-actions').appendChild(successMsg);
-            
+
             // Remove success message after 3 seconds
-            setTimeout(() => {
-                successMsg.remove();
-            }, 3000);
+            setTimeout(() => successMsg.remove(), 3000);
         }
 
         function checkAuth() {
@@ -173,53 +223,27 @@
             const guildId = localStorage.getItem('selected_guild_id');
 
             if (!token || !tokenType || !guildId) {
-                debugLog('No valid token or guild ID found');
-                showLoginCard();
+                window.location.href = 'dashboard.html';
                 return;
             }
 
-            debugLog('Fetching guild data...');
-
             // Fetch guild data
-            Promise.all([
-                fetch(`https://discord.com/api/guilds/${guildId}`, {
-                    headers: {
-                        Authorization: `${tokenType} ${token}`
-                    }
-                }),
-                fetch(`https://discord.com/api/guilds/${guildId}/channels`, {
-                    headers: {
-                        Authorization: `${tokenType} ${token}`
-                    }
-                }),
-                fetch(`https://discord.com/api/guilds/${guildId}/roles`, {
-                    headers: {
-                        Authorization: `${tokenType} ${token}`
-                    }
-                })
-            ])
-            .then(responses => Promise.all(responses.map(r => r.json())))
-            .then(([guildData, channels, roles]) => {
-                // Combine all data
-                guildData.channels = channels.filter(c => c.type === 0); // Text channels only
-                guildData.roles = roles.filter(r => r.name !== '@everyone');
-                
-                // For demo purposes, create some dummy settings
-                guildData.settings = {
-                    welcome_enabled: true,
-                    welcome_channel: channels[0]?.id,
-                    welcome_message: 'Welcome {user} to {server}!',
-                    leveling_enabled: true,
-                    xp_rate: 1,
-                    autorole_enabled: false,
-                    autorole_id: null
-                };
-                
-                showGuildSettings(guildData);
+            fetch(`https://discord.com/api/guilds/${guildId}`, {
+                headers: {
+                    Authorization: `${tokenType} ${token}`
+                }
+            })
+            .then(response => response.json())
+            .then(guildData => {
+                if (guildData.id) {
+                    showGuildSettings(guildData);
+                } else {
+                    throw new Error('Invalid guild data');
+                }
             })
             .catch(error => {
-                debugLog(`Error fetching guild data: ${error.message}`);
-                showLoginCard();
+                console.error('Error:', error);
+                window.location.href = 'dashboard.html';
             });
         }
 
