@@ -1,0 +1,114 @@
+body.home {
+  background: linear-gradient(135deg, #0a0a0a 60%, #1a0a0a 100%);
+  min-height: 100vh;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 3rem 1rem 2rem 1rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  margin-bottom: 1.2rem;
+  text-shadow: 0 2px 24px #ff333355;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #ccc;
+  margin-bottom: 2.2rem;
+  max-width: 500px;
+}
+
+.hero .cta {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero .button, .hero .button-secondary {
+  padding: 0.9rem 2.2rem;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  text-transform: lowercase;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.hero .button {
+  background: #ff3333;
+  color: #fff;
+  box-shadow: 0 2px 16px #ff333344;
+}
+
+.hero .button:hover {
+  background: #c00;
+}
+
+.hero .button-secondary {
+  background: #181818;
+  color: #ff3333;
+  border: 1px solid #ff3333;
+}
+
+.hero .button-secondary:hover {
+  background: #222;
+  color: #fff;
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin: 3rem auto 2rem auto;
+  max-width: 900px;
+}
+
+.feature {
+  background: #151515;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px #0002;
+  padding: 2rem 1.5rem;
+  min-width: 220px;
+  flex: 1 1 220px;
+  color: #fff;
+  text-align: left;
+  border-left: 4px solid #ff3333;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.feature:hover {
+  border-left: 4px solid #fff;
+  box-shadow: 0 4px 24px #ff333344;
+}
+
+.feature h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.7rem;
+  color: #ff3333;
+  font-weight: 600;
+}
+
+.feature p {
+  color: #ccc;
+  font-size: 1rem;
+  margin: 0;
+}
+
+@media (max-width: 800px) {
+  .features { flex-direction: column; gap: 1.2rem; }
+  .feature { min-width: 0; }
+}

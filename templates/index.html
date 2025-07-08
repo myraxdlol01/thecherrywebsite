@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>cherrybot dashboard</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
   <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
 </head>
-<body>
+<body class="home">
   <nav>
     <ul>
       <li><a href="/" class="active">home</a></li>
@@ -17,9 +18,32 @@
     </ul>
   </nav>
   <main>
-    <h1>cherrybot dashboard</h1>
-    <p>a minimal, chill web dashboard for your discord server.</p>
-    <a href="/login" class="button">log in with discord</a>
+    <section class="hero">
+      <h1>cherrybot</h1>
+      <p>the all-in-one, minimal, and modern discord bot for chill, fun, and safe communities.<br>leveling, moderation, music, ai, games, and more — all in one sleek dashboard.</p>
+      <div class="cta">
+        <a href="/login" class="button">log in with discord</a>
+        <a href="https://discord.com/oauth2/authorize?client_id=1391355916502433874&scope=bot+applications.commands&permissions=8" class="button-secondary" target="_blank">invite bot</a>
+      </div>
+    </section>
+    <section class="features">
+      <div class="feature">
+        <h3>leveling & xp</h3>
+        <p>customizable leveling system to reward active members and boost engagement.</p>
+      </div>
+      <div class="feature">
+        <h3>moderation</h3>
+        <p>powerful moderation tools: kick, ban, mute, slowmode, warnings, and more.</p>
+      </div>
+      <div class="feature">
+        <h3>music & fun</h3>
+        <p>play music, games, and use fun commands like 8ball, joke, poll, and more.</p>
+      </div>
+      <div class="feature">
+        <h3>ai & utilities</h3>
+        <p>ai chat, reminders, weather, translation, image tools, and server info at your fingertips.</p>
+      </div>
+    </section>
   </main>
   <footer>
     &copy; 2025 cherrybot
