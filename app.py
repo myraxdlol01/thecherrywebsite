@@ -77,13 +77,15 @@ def callback():
         session['discord_token'] = token
         # Fetch user info
         discord = make_session(token=token)
-        user = discord.get(API_BASE_URL + '/users/@me').json()
-        guilds = discord.get(API_BASE_URL + '/users/@me/guilds').json()
-        session['user'] = user
-        session['guilds'] = guilds
+        user = discord.get(API_BASE_URL + '/users/@me')
+        guilds = discord.get(API_BASE_URL + '/users/@me/guilds')
+        if user.status_code != 200 or guilds.status_code != 200:
+            return render_template('callback.html', error='failed to fetch user or guilds')
+        session['user'] = user.json()
+        session['guilds'] = guilds.json()
         return redirect(url_for('dashboard'))
-    except Exception:
-        return render_template('callback.html')
+    except Exception as e:
+        return render_template('callback.html', error=str(e))
 
 @app.route('/logout')
 def logout():

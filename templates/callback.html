@@ -19,6 +19,10 @@
   <main>
     <h1>logging in...</h1>
     <p>please wait while we log you in with discord.</p>
+    {% if error %}
+      <div style="color:#ff3333; margin-top:2rem;">error: {{ error }}</div>
+      <a href="/login" class="button">try again</a>
+    {% endif %}
   </main>
   <footer>
     &copy; 2025 cherrybot
