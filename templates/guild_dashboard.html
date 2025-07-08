@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>server settings - cherrybot</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
   <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
 </head>
-<body>
+<body class="guild-dashboard">
   <nav>
     <ul>
       <li><a href="/">home</a></li>
@@ -17,8 +18,9 @@
     </ul>
   </nav>
   <main>
+    <img src="{{ url_for('static', filename='botpfp.jpg') }}" alt="cherrybot pfp" class="bot-pfp" loading="eager">
     <h1>server settings</h1>
-    <form method="post">
+    <form method="post" class="guild-form">
       <section>
         <h2>leveling</h2>
         <label><input type="checkbox" name="leveling" {% if settings.leveling %}checked{% endif %}> enable leveling</label>
@@ -36,7 +38,7 @@
         <label><input type="checkbox" name="ban" {% if settings.moderation.ban %}checked{% endif %}> allow ban</label>
         <label><input type="checkbox" name="kick" {% if settings.moderation.kick %}checked{% endif %}> allow kick</label>
       </section>
-      <button type="submit">save settings</button>
+      <button type="submit" class="button">save settings</button>
     </form>
     <a href="/dashboard" class="button">back to dashboard</a>
   </main>
