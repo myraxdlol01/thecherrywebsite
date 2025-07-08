@@ -1,12 +1,23 @@
 DROP TABLE IF EXISTS guild_settings;
 DROP TABLE IF EXISTS command_logs;
 
+CREATE TABLE IF NOT EXISTS users (
+    id TEXT PRIMARY KEY,
+    username TEXT NOT NULL,
+    email TEXT,
+    avatar TEXT,
+    token TEXT,
+    token_expiry REAL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE TABLE IF NOT EXISTS guild_settings (
-    guild_id INTEGER PRIMARY KEY,
+    guild_id TEXT PRIMARY KEY,
     welcome_channel TEXT,
     welcome_message TEXT,
     leveling_enabled INTEGER DEFAULT 1,
-    xp_rate FLOAT DEFAULT 1.0,
+    xp_rate REAL DEFAULT 1.0,
     music_volume INTEGER DEFAULT 100,
     music_dj_role TEXT,
     music_channel TEXT,
@@ -31,8 +42,8 @@ CREATE TABLE IF NOT EXISTS command_logs (
 );
 
 CREATE TABLE IF NOT EXISTS level_roles (
-    guild_id INTEGER,
-    role_id INTEGER,
+    guild_id TEXT,
+    role_id TEXT,
     level_requirement INTEGER,
     PRIMARY KEY (guild_id, role_id)
 ); 

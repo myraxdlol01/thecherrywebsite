@@ -3,7 +3,7 @@ from flask_discord import DiscordOAuth2Session, requires_authorization, Unauthor
 import os
 from dotenv import load_dotenv
 import sqlite3
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 
 load_dotenv()
@@ -39,6 +39,27 @@ def init_db():
             db.cursor().executescript(f.read())
         db.commit()
 
+def store_token(token_data):
+    """Store token data in session with expiry"""
+    session['oauth2_token'] = token_data
+    session['token_expiry'] = (datetime.utcnow() + timedelta(seconds=token_data.get('expires_in', 604800))).timestamp()
+
+def is_token_expired():
+    """Check if the stored token is expired"""
+    expiry = session.get('token_expiry')
+    if not expiry:
+        return True
+    return datetime.utcnow().timestamp() > expiry
+
+def refresh_token():
+    """Attempt to refresh the OAuth2 token"""
+    try:
+        token = discord.refresh_token()
+        store_token(token)
+        return True
+    except:
+        return False
+
 @app.route("/")
 def index():
     if not discord.authorized:
@@ -49,6 +70,11 @@ def index():
         )
     
     try:
+        # Check token expiry
+        if is_token_expired():
+            if not refresh_token():
+                return redirect(url_for("login"))
+        
         user = discord.fetch_user()
         guilds = discord.fetch_guilds()
         
@@ -62,71 +88,92 @@ def index():
         )
     except Exception as e:
         app.logger.error(f"Failed to fetch user data: {str(e)}")
-        discord.revoke()
+        session.clear()  # Clear invalid session data
         return redirect(url_for("login"))
 
 @app.route("/login")
 def login():
+    session.clear()  # Clear any existing session data
     return discord.create_session(scope=OAUTH2_SCOPES)
 
 @app.route("/callback")
 def callback():
     try:
-        discord.callback()
+        token = discord.callback()
+        store_token(token)
+        
         user = discord.fetch_user()
         
         # Store user in database
         db = get_db()
         db.execute(
-            'INSERT OR REPLACE INTO users (id, username, email, avatar) VALUES (?, ?, ?, ?)',
-            (user.id, user.name, user.email, user.avatar_url)
+            'INSERT OR REPLACE INTO users (id, username, email, avatar, token, token_expiry) VALUES (?, ?, ?, ?, ?, ?)',
+            (
+                user.id, 
+                user.name, 
+                user.email, 
+                user.avatar_url,
+                json.dumps(session['oauth2_token']),
+                session['token_expiry']
+            )
         )
         db.commit()
         
         return redirect(url_for("index"))
     except Exception as e:
         app.logger.error(f"OAuth callback error: {str(e)}")
+        session.clear()  # Clear any invalid session data
         return redirect(url_for("login"))
 
 @app.route("/logout")
 def logout():
     discord.revoke()
+    session.clear()
     return redirect(url_for("index"))
 
 @app.route("/guild/<int:guild_id>")
 @requires_authorization
 def guild_dashboard(guild_id):
-    user = discord.fetch_user()
-    guild = discord.fetch_guild(guild_id)
-    
-    if not guild:
-        return "Guild not found", 404
-    
-    # Get guild settings from database
-    db = get_db()
-    settings = db.execute(
-        'SELECT * FROM guild_settings WHERE guild_id = ?',
-        (guild_id,)
-    ).fetchone()
-    
-    if not settings:
-        # Initialize default settings
-        db.execute(
-            'INSERT INTO guild_settings (guild_id, welcome_channel, welcome_message, leveling_enabled, xp_rate) VALUES (?, NULL, ?, 1, 1)',
-            (guild_id, "Welcome {user} to {server}!")
-        )
-        db.commit()
+    try:
+        # Check token expiry
+        if is_token_expired():
+            if not refresh_token():
+                return redirect(url_for("login"))
+        
+        user = discord.fetch_user()
+        guild = discord.fetch_guild(guild_id)
+        
+        if not guild:
+            return "Guild not found", 404
+        
+        # Get guild settings from database
+        db = get_db()
         settings = db.execute(
             'SELECT * FROM guild_settings WHERE guild_id = ?',
             (guild_id,)
         ).fetchone()
-    
-    return render_template(
-        "guild_dashboard.html",
-        user=user,
-        guild=guild,
-        settings=settings
-    )
+        
+        if not settings:
+            # Initialize default settings
+            db.execute(
+                'INSERT INTO guild_settings (guild_id, welcome_channel, welcome_message, leveling_enabled, xp_rate) VALUES (?, NULL, ?, 1, 1)',
+                (guild_id, "Welcome {user} to {server}!")
+            )
+            db.commit()
+            settings = db.execute(
+                'SELECT * FROM guild_settings WHERE guild_id = ?',
+                (guild_id,)
+            ).fetchone()
+        
+        return render_template(
+            "guild_dashboard.html",
+            user=user,
+            guild=guild,
+            settings=settings
+        )
+    except Exception as e:
+        app.logger.error(f"Guild dashboard error: {str(e)}")
+        return redirect(url_for("login"))
 
 @app.route("/api/guild/<int:guild_id>/settings", methods=["GET", "POST"])
 @requires_authorization
@@ -272,6 +319,7 @@ def guild_stats(guild_id):
 
 @app.errorhandler(Unauthorized)
 def handle_unauthorized(e):
+    session.clear()  # Clear invalid session data
     return redirect(url_for("login"))
 
 if __name__ == "__main__":
