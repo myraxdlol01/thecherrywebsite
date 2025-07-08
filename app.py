@@ -17,7 +17,7 @@ DISCORD_REDIRECT_URI = os.getenv('DISCORD_REDIRECT_URI')
 API_BASE_URL = 'https://discord.com/api'
 OAUTH2_URL = API_BASE_URL + '/oauth2/authorize'
 TOKEN_URL = API_BASE_URL + '/oauth2/token'
-SCOPE = ['identify', 'guilds']
+SCOPE = ['identify', 'guilds', 'applications.commands']
 
 @app.route('/static-test')
 def static_test():
