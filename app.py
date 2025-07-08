@@ -1,9 +1,12 @@
+
 import os
 from flask import Flask, render_template, redirect, url_for, session, request, jsonify
 from requests_oauthlib import OAuth2Session
 from dotenv import load_dotenv
 
 load_dotenv()
+print('DISCORD_REDIRECT_URI:', os.environ.get('DISCORD_REDIRECT_URI'))
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '0'
 
 app = Flask(__name__)
 app.secret_key = os.getenv('FLASK_SECRET_KEY', 'dev')
