@@ -25,16 +25,7 @@
     </nav>
 
     <main id="main-content">
-        <div class="discord-login-container">
-            <div class="discord-login-card">
-                <img src="bot-avatar.jpg" alt="Discord Logo" class="discord-logo">
-                <h2>Welcome to Cherry Dashboard</h2>
-                <p>Please login with Discord to manage your server settings</p>
-                <a href="https://discord.com/oauth2/authorize?client_id=1391355916502433874&redirect_uri=https%3A%2F%2Fthecherrywebsite.pages.dev%2Fcallback.html&response_type=code&scope=identify%20guilds" class="discord-login-button">
-                    Login with Discord
-                </a>
-            </div>
-        </div>
+        <!-- Content will be dynamically updated -->
     </main>
 
     <footer>
@@ -42,13 +33,40 @@
     </footer>
 
     <script>
+        function debugLog(message) {
+            console.log(message);
+            const debugInfo = document.createElement('p');
+            debugInfo.style.textAlign = 'center';
+            debugInfo.style.color = '#666';
+            debugInfo.style.fontSize = '12px';
+            debugInfo.style.marginTop = '10px';
+            debugInfo.textContent = message;
+            document.getElementById('main-content').appendChild(debugInfo);
+        }
+
         // Check if user is authenticated
         document.addEventListener('DOMContentLoaded', function() {
+            debugLog('Page loaded, checking authentication...');
+            
             const authCode = sessionStorage.getItem('discord_auth_code');
             const mainContent = document.getElementById('main-content');
             
-            if (authCode) {
-                // Show loading state
+            if (!authCode) {
+                debugLog('No auth code found, showing login form');
+                mainContent.innerHTML = `
+                    <div class="discord-login-container">
+                        <div class="discord-login-card">
+                            <img src="bot-avatar.jpg" alt="Discord Logo" class="discord-logo">
+                            <h2>Welcome to Cherry Dashboard</h2>
+                            <p>Please login with Discord to manage your server settings</p>
+                            <a href="https://discord.com/oauth2/authorize?client_id=1391355916502433874&redirect_uri=https%3A%2F%2Fthecherrywebsite.pages.dev%2Fcallback.html&response_type=code&scope=identify%20guilds" class="discord-login-button">
+                                Login with Discord
+                            </a>
+                        </div>
+                    </div>
+                `;
+            } else {
+                debugLog('Auth code found, showing loading state');
                 mainContent.innerHTML = `
                     <div class="loading-container">
                         <div class="loading-spinner"></div>
@@ -58,9 +76,11 @@
                 
                 // Clear the auth code since we've used it
                 sessionStorage.removeItem('discord_auth_code');
+                debugLog('Auth code cleared from session storage');
                 
                 // For now, show a temporary success message
                 setTimeout(() => {
+                    debugLog('Showing success message');
                     mainContent.innerHTML = `
                         <div class="dashboard-container">
                             <div class="dashboard-card">
@@ -75,6 +95,7 @@
         });
 
         function logout() {
+            debugLog('Logging out...');
             sessionStorage.clear();
             window.location.href = 'index.html';
         }
