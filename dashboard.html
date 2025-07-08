@@ -71,7 +71,7 @@
 
         function redirectToLogin() {
             const scope = encodeURIComponent('identify guilds');
-            const loginUrl = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=${scope}`;
+            const loginUrl = `https://discord.com/oauth2/authorize?client_id=1391355916502433874&permissions=8&response_type=code&redirect_uri=+https%3A%2F%2Fthecherrywebsite.pages.dev%2Fcallback.html&integration_type=0&scope=identify+bot+guilds+applications.commands`;
             window.location.href = loginUrl;
         }
 
