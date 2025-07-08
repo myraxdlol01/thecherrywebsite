@@ -1,0 +1,37 @@
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment variables
+.env
+.env.*
+*.env
+
+# VSCode
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Flask
+instance/
+.webassets-cache
+
+# Static build
+staticfiles/
+static/img/
+static/css/
+
+# Logs
+*.log
+
+# SQLite
+*.sqlite3
+*.db
+
+# Ignore secrets
+cherrybot/.env
