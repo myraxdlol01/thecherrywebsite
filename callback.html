@@ -1,78 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>cherry • logging in</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CherryBot - Authenticating</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="loading-container">
         <div class="loading-spinner"></div>
-        <h2>logging in...</h2>
-        <p>please wait while we complete your login</p>
-        <p id="debug-info" class="debug-message"></p>
+        <h2>Authenticating</h2>
+        <p>Please wait while we complete your login...</p>
+    </div>
+
+    <div id="error" class="error-message" style="display: none;">
+        <p>Authentication failed. Redirecting back to login...</p>
     </div>
 
     <script>
-        function debugLog(message) {
-            console.log(message);
-            document.getElementById('debug-info').textContent = message;
+        const CLIENT_ID = '1234567890'; // Replace with your actual client ID
+        const CLIENT_SECRET = 'your_client_secret'; // Replace with your actual client secret
+        const REDIRECT_URI = window.location.origin + '/callback.html';
+
+        async function handleCallback() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+            
+            if (!code) {
+                showError('No authorization code received');
+                return;
+            }
+
+            try {
+                const tokenResponse = await fetch('https://discord.com/api/oauth2/token', {
+                    method: 'POST',
+                    body: new URLSearchParams({
+                        client_id: CLIENT_ID,
+                        client_secret: CLIENT_SECRET,
+                        grant_type: 'authorization_code',
+                        code: code,
+                        redirect_uri: REDIRECT_URI
+                    }),
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                });
+
+                if (!tokenResponse.ok) {
+                    throw new Error('Token exchange failed');
+                }
+
+                const tokenData = await tokenResponse.json();
+                
+                // Store the token and its expiry time
+                localStorage.setItem('discord_token', tokenData.access_token);
+                localStorage.setItem('token_expiry', Date.now() + (tokenData.expires_in * 1000));
+                
+                // Redirect to dashboard
+                window.location.href = '/dashboard.html';
+            } catch (error) {
+                console.error('Authentication failed:', error);
+                showError(error.message);
+            }
         }
 
-        // Get the code from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const code = urlParams.get('code');
-        const error = urlParams.get('error');
-        const errorDescription = urlParams.get('error_description');
-        
-        debugLog('checking response parameters...');
-        
-        if (error) {
-            debugLog(`error: ${error} - ${errorDescription}`);
-            setTimeout(() => {
-                window.location.href = 'dashboard.html?error=' + encodeURIComponent(errorDescription || error);
-            }, 2000);
-        } else if (code) {
-            debugLog('auth code received, exchanging for token...');
+        function showError(message) {
+            document.querySelector('.loading-container').style.display = 'none';
+            const errorElement = document.getElementById('error');
+            errorElement.querySelector('p').textContent = message;
+            errorElement.style.display = 'flex';
             
-            // Exchange the code for an access token using our backend service
-            fetch('https://cherry-auth.onrender.com/auth/discord/callback', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    code: code,
-                    redirect_uri: 'https://thecherrywebsite.pages.dev/callback.html'
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.access_token) {
-                    // Store the token and its expiry
-                    localStorage.setItem('discord_access_token', data.access_token);
-                    localStorage.setItem('discord_token_type', data.token_type);
-                    localStorage.setItem('discord_expires_in', Date.now() + (data.expires_in * 1000));
-                    
-                    debugLog('token received, redirecting...');
-                    window.location.href = 'dashboard.html';
-                } else {
-                    throw new Error('no access token received');
-                }
-            })
-            .catch(error => {
-                debugLog(`error exchanging code: ${error.message}`);
-                setTimeout(() => {
-                    window.location.href = 'dashboard.html?error=' + encodeURIComponent('Failed to exchange auth code for token');
-                }, 2000);
-            });
-        } else {
-            debugLog('no auth code found, redirecting...');
             setTimeout(() => {
-                window.location.href = 'dashboard.html?error=' + encodeURIComponent('No authorization code received');
-            }, 1000);
+                window.location.href = '/login.html';
+            }, 3000);
         }
+
+        // Start the callback handling when page loads
+        document.addEventListener('DOMContentLoaded', handleCallback);
     </script>
 </body>
 </html> 
