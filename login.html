@@ -1,68 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>cherry login</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="login.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CherryBot - Login</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <img src="bot-avatar.jpg" alt="cherrybot avatar" class="bot-avatar" />
-        <h1>cherry login</h1>
-        <p>connect your discord account</p>
-    </header>
-
     <nav>
         <ul class="nav-list">
-            <li><a href="index.html">home</a></li>
-            <li><a href="commands.html">commands</a></li>
-            <li><a href="dashboard.html">dashboard</a></li>
-            <li><a href="premium.html">premium</a></li>
-            <li><a href="faq.html">faq</a></li>
-            <li><a href="https://discord.gg/cheriez" target="_blank">support</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="commands.html">Commands</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="premium.html">Premium</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
         </ul>
     </nav>
 
-    <main id="main-content">
+    <main class="container">
         <div class="login-container">
-            <div class="discord-login-card">
-                <img src="bot-avatar.jpg" alt="Discord Logo" class="discord-logo">
-                <h2>Welcome to Cherry</h2>
-                <p>Please login with Discord to manage your server settings</p>
-                <a href="https://discord.com/oauth2/authorize?client_id=1391355916502433874&permissions=8&response_type=code&redirect_uri=+https%3A%2F%2Fthecherrywebsite.pages.dev%2Fcallback.html&integration_type=0&scope=bot+identify+guilds+applications.commands" class="discord-login-button">
-                    Login with Discord
-                </a>
-            </div>
+            <h1>Login to Dashboard</h1>
+            <p>Connect with Discord to manage your servers</p>
+            <button id="loginBtn" class="button button-discord">
+                <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_white_RGB.png" alt="Discord">
+                Login with Discord
+            </button>
         </div>
     </main>
 
-    <footer>
-        <p>made with care by chérie</p>
-    </footer>
-
     <script>
-        // Check if there's an error message in the URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const error = urlParams.get('error');
-        
-        if (error) {
-            const loginCard = document.querySelector('.discord-login-card');
-            const errorMessage = document.createElement('div');
-            errorMessage.className = 'error-message';
-            errorMessage.textContent = decodeURIComponent(error);
-            loginCard.appendChild(errorMessage);
-        }
+        const CLIENT_ID = '1234567890'; // Replace with your actual client ID
+        const REDIRECT_URI = encodeURIComponent(window.location.origin + '/callback.html');
 
-        // Check if user is already logged in
-        const token = localStorage.getItem('discord_access_token');
-        const tokenType = localStorage.getItem('discord_token_type');
-        const expiresIn = localStorage.getItem('discord_expires_in');
-
-        if (token && tokenType && expiresIn && Date.now() < parseInt(expiresIn)) {
-            window.location.href = 'dashboard.html';
-        }
+        document.getElementById('loginBtn').addEventListener('click', () => {
+            const scope = encodeURIComponent('identify guilds');
+            const loginUrl = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=${scope}&prompt=consent`;
+            window.location.href = loginUrl;
+        });
     </script>
 </body>
 </html> 

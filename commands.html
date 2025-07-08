@@ -45,6 +45,36 @@
                     <p>Skip to the next song in queue</p>
                     <div class="usage">/skip</div>
                 </div>
+                <div class="command-embed">
+                    <h3>/queue</h3>
+                    <p>View the current music queue</p>
+                    <div class="usage">/queue [page number]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/nowplaying</h3>
+                    <p>Show information about the current song</p>
+                    <div class="usage">/nowplaying</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/volume</h3>
+                    <p>Adjust the music volume</p>
+                    <div class="usage">/volume [0-100]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/loop</h3>
+                    <p>Toggle loop mode for current song or queue</p>
+                    <div class="usage">/loop [song/queue/off]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/shuffle</h3>
+                    <p>Shuffle the current queue</p>
+                    <div class="usage">/shuffle</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/lyrics</h3>
+                    <p>Get lyrics for the current song</p>
+                    <div class="usage">/lyrics</div>
+                </div>
             </div>
         </div>
 
@@ -67,6 +97,31 @@
                     <h3>/info</h3>
                     <p>Get information about the bot</p>
                     <div class="usage">/info</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/serverinfo</h3>
+                    <p>Display information about the server</p>
+                    <div class="usage">/serverinfo</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/userinfo</h3>
+                    <p>Show information about a user</p>
+                    <div class="usage">/userinfo [@user]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/avatar</h3>
+                    <p>Get a user's avatar</p>
+                    <div class="usage">/avatar [@user]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/remind</h3>
+                    <p>Set a reminder</p>
+                    <div class="usage">/remind [time] [message]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/poll</h3>
+                    <p>Create a poll</p>
+                    <div class="usage">/poll [question] [options]</div>
                 </div>
             </div>
         </div>
@@ -91,6 +146,31 @@
                     <p>Get a random joke</p>
                     <div class="usage">/joke</div>
                 </div>
+                <div class="command-embed">
+                    <h3>/meme</h3>
+                    <p>Get a random meme</p>
+                    <div class="usage">/meme</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/cat</h3>
+                    <p>Get a random cat picture</p>
+                    <div class="usage">/cat</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/dog</h3>
+                    <p>Get a random dog picture</p>
+                    <div class="usage">/dog</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/coinflip</h3>
+                    <p>Flip a coin</p>
+                    <div class="usage">/coinflip</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/rps</h3>
+                    <p>Play rock, paper, scissors</p>
+                    <div class="usage">/rps [rock/paper/scissors]</div>
+                </div>
             </div>
         </div>
 
@@ -113,6 +193,69 @@
                     <h3>/mute</h3>
                     <p>Mute a member in the server</p>
                     <div class="usage">/mute [@user] [duration] [reason]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/unmute</h3>
+                    <p>Unmute a muted member</p>
+                    <div class="usage">/unmute [@user]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/warn</h3>
+                    <p>Warn a member</p>
+                    <div class="usage">/warn [@user] [reason]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/warnings</h3>
+                    <p>View warnings for a member</p>
+                    <div class="usage">/warnings [@user]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/clear</h3>
+                    <p>Clear messages in a channel</p>
+                    <div class="usage">/clear [amount]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/slowmode</h3>
+                    <p>Set channel slowmode</p>
+                    <div class="usage">/slowmode [seconds]</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="command-category">
+            <div class="category-header">
+                <h2>⭐ Premium Commands</h2>
+            </div>
+            <div class="commands-grid">
+                <div class="command-embed">
+                    <h3>/autoplay</h3>
+                    <p>Toggle autoplay for music</p>
+                    <div class="usage">/autoplay</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/playlist</h3>
+                    <p>Save and load custom playlists</p>
+                    <div class="usage">/playlist [save/load] [name]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/welcome</h3>
+                    <p>Customize welcome messages</p>
+                    <div class="usage">/welcome [message]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/autorole</h3>
+                    <p>Set automatic roles for new members</p>
+                    <div class="usage">/autorole [@role]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/reactionrole</h3>
+                    <p>Create reaction role messages</p>
+                    <div class="usage">/reactionrole [create/edit]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/customcommand</h3>
+                    <p>Create custom commands</p>
+                    <div class="usage">/customcommand [create/edit] [name]</div>
                 </div>
             </div>
         </div>
