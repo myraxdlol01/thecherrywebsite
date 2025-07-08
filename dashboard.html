@@ -21,19 +21,14 @@
             <li><a href="dashboard.html" class="active">dashboard</a></li>
             <li><a href="premium.html">premium</a></li>
             <li><a href="faq.html">faq</a></li>
+            <li><a href="https://discord.gg/cheriez" target="_blank">support</a></li>
         </ul>
     </nav>
 
     <main id="main-content">
-        <div class="discord-login-container">
-            <div class="discord-login-card">
-                <img src="bot-avatar.jpg" alt="Discord Logo" class="discord-logo">
-                <h2>Welcome to Cherry Dashboard</h2>
-                <p>Please login with Discord to manage your server settings</p>
-                <a href="https://discord.com/oauth2/authorize?client_id=1391355916502433874&permissions=8&response_type=code&redirect_uri=+https%3A%2F%2Fthecherrywebsite.pages.dev%2Fcallback.html&integration_type=0&scope=bot+identify+guilds+applications.commands" class="discord-login-button">
-                    Login with Discord
-                </a>
-            </div>
+        <div class="loading-container">
+            <div class="loading-spinner"></div>
+            <p>Loading...</p>
         </div>
     </main>
 
@@ -53,47 +48,114 @@
             document.getElementById('main-content').appendChild(debugInfo);
         }
 
-        // Check if user is authenticated
-        document.addEventListener('DOMContentLoaded', function() {
-            debugLog('Page loaded, checking authentication...');
-            
-            const authCode = sessionStorage.getItem('discord_auth_code');
+        function showLoginCard() {
+            const mainContent = document.getElementById('main-content');
+            mainContent.innerHTML = `
+                <div class="discord-login-container">
+                    <div class="discord-login-card">
+                        <img src="bot-avatar.jpg" alt="Discord Logo" class="discord-logo">
+                        <h2>Welcome to Cherry Dashboard</h2>
+                        <p>Please login with Discord to manage your server settings</p>
+                        <a href="https://discord.com/oauth2/authorize?client_id=1391355916502433874&permissions=8&response_type=code&redirect_uri=+https%3A%2F%2Fthecherrywebsite.pages.dev%2Fcallback.html&integration_type=0&scope=bot+identify+guilds+applications.commands" class="discord-login-button">
+                            Login with Discord
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showDashboard(userData, guilds) {
             const mainContent = document.getElementById('main-content');
             
-            if (authCode) {
-                debugLog('Auth code found, showing loading state');
-                mainContent.innerHTML = `
-                    <div class="loading-container">
-                        <div class="loading-spinner"></div>
-                        <p>Loading your servers...</p>
+            // Filter guilds where user has manage server permission
+            const managedGuilds = guilds.filter(guild => (guild.permissions & 0x20) === 0x20);
+            
+            const guildsList = managedGuilds.map(guild => `
+                <div class="server-card" onclick="openGuildSettings('${guild.id}')">
+                    <img src="${guild.icon 
+                        ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png` 
+                        : 'bot-avatar.jpg'}" 
+                        alt="${guild.name}" class="server-icon">
+                    <h3>${guild.name}</h3>
+                    <p>Click to manage</p>
+                </div>
+            `).join('');
+
+            mainContent.innerHTML = `
+                <div class="dashboard-container">
+                    <div class="user-info">
+                        <img src="https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png" 
+                             alt="${userData.username}" class="user-avatar">
+                        <h2>Welcome, ${userData.username}</h2>
+                        <button onclick="logout()" class="discord-login-button">Logout</button>
                     </div>
-                `;
-                
-                // Clear the auth code since we've used it
-                sessionStorage.removeItem('discord_auth_code');
-                debugLog('Auth code cleared from session storage');
-                
-                // For now, show a temporary success message
-                setTimeout(() => {
-                    debugLog('Showing success message');
-                    mainContent.innerHTML = `
-                        <div class="dashboard-container">
-                            <div class="dashboard-card">
-                                <h2>Successfully Logged In!</h2>
-                                <p>The dashboard is currently under development. Check back soon for server management features!</p>
-                                <button onclick="logout()" class="discord-login-button">Logout</button>
-                            </div>
+                    
+                    <div class="servers-section">
+                        <h2>Your Servers</h2>
+                        <div class="servers-grid">
+                            ${guildsList}
                         </div>
-                    `;
-                }, 2000);
+                    </div>
+                </div>
+            `;
+        }
+
+        function openGuildSettings(guildId) {
+            // Store the selected guild ID
+            localStorage.setItem('selected_guild_id', guildId);
+            window.location.href = `guild_dashboard.html`;
+        }
+
+        function checkAuth() {
+            const token = localStorage.getItem('discord_access_token');
+            const tokenType = localStorage.getItem('discord_token_type');
+            const expiresIn = localStorage.getItem('discord_expires_in');
+
+            if (!token || !tokenType || !expiresIn || Date.now() > parseInt(expiresIn)) {
+                debugLog('No valid token found');
+                showLoginCard();
+                return;
             }
-        });
+
+            debugLog('Token found, fetching user data...');
+
+            // Fetch user data
+            Promise.all([
+                fetch('https://discord.com/api/users/@me', {
+                    headers: {
+                        Authorization: `${tokenType} ${token}`
+                    }
+                }),
+                fetch('https://discord.com/api/users/@me/guilds', {
+                    headers: {
+                        Authorization: `${tokenType} ${token}`
+                    }
+                })
+            ])
+            .then(responses => Promise.all(responses.map(r => r.json())))
+            .then(([userData, guilds]) => {
+                if (userData.id) {
+                    debugLog('User data received');
+                    showDashboard(userData, guilds);
+                } else {
+                    throw new Error('Invalid user data');
+                }
+            })
+            .catch(error => {
+                debugLog(`Error fetching user data: ${error.message}`);
+                localStorage.clear();
+                showLoginCard();
+            });
+        }
 
         function logout() {
             debugLog('Logging out...');
-            sessionStorage.clear();
+            localStorage.clear();
             window.location.href = 'index.html';
         }
+
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', checkAuth);
     </script>
 </body>
 </html> 

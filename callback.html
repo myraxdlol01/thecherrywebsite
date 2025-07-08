@@ -37,16 +37,46 @@
                 window.location.href = 'dashboard.html';
             }, 2000);
         } else if (code) {
-            debugLog('Auth code received');
-            // Store the auth code temporarily
-            sessionStorage.setItem('discord_auth_code', code);
-            debugLog('Auth code stored in session storage');
+            debugLog('Auth code received, exchanging for token...');
             
-            // Add a small delay to show the debug message
-            setTimeout(() => {
-                debugLog('Redirecting to dashboard...');
-                window.location.href = 'dashboard.html';
-            }, 1000);
+            // Exchange the code for an access token
+            fetch('https://discord.com/api/oauth2/token', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    client_id: '1391355916502433874',
+                    client_secret: process.env.DISCORD_CLIENT_SECRET, // This should be handled server-side
+                    grant_type: 'authorization_code',
+                    code: code,
+                    redirect_uri: 'https://thecherrywebsite.pages.dev/callback.html'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.access_token) {
+                    // Store the token and its expiry
+                    localStorage.setItem('discord_access_token', data.access_token);
+                    localStorage.setItem('discord_token_type', data.token_type);
+                    localStorage.setItem('discord_expires_in', Date.now() + (data.expires_in * 1000));
+                    
+                    if (data.refresh_token) {
+                        localStorage.setItem('discord_refresh_token', data.refresh_token);
+                    }
+                    
+                    debugLog('Token received and stored, redirecting...');
+                    window.location.href = 'dashboard.html';
+                } else {
+                    throw new Error('No access token received');
+                }
+            })
+            .catch(error => {
+                debugLog(`Error exchanging code: ${error.message}`);
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 2000);
+            });
         } else {
             debugLog('No auth code or error found, redirecting to login...');
             setTimeout(() => {
