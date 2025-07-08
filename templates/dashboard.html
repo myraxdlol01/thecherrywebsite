@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>dashboard - cherrybot</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
   <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
 </head>
-<body>
+<body class="dashboard">
   <nav>
     <ul>
       <li><a href="/">home</a></li>
@@ -25,11 +26,17 @@
       </section>
       <section>
         <h2>your servers</h2>
-        <ul>
+        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
           {% for guild in guilds %}
-            <li><a href="/guild/{{ guild['id'] }}">{{ guild['name'] }}</a></li>
+            <div class="server-card">
+              <img src="https://cdn.discordapp.com/icons/{{ guild['id'] }}/{{ guild['icon'] }}.png?size=64" alt="server icon">
+              <div>
+                <div style="font-weight:600; color:#fff; font-size:1.1rem; margin-bottom:0.2rem;">{{ guild['name'] }}</div>
+                <a href="/guild/{{ guild['id'] }}" class="button">manage</a>
+              </div>
+            </div>
           {% endfor %}
-        </ul>
+        </div>
       </section>
     {% else %}
       <a href="/login" class="button">log in with discord</a>

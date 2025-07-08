@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>callback - cherrybot</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
   <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
 </head>
 <body>
@@ -17,12 +18,15 @@
     </ul>
   </nav>
   <main>
-    <h1>logging in...</h1>
-    <p>please wait while we log you in with discord.</p>
-    {% if error %}
-      <div style="color:#ff3333; margin-top:2rem;">error: {{ error }}</div>
-      <a href="/login" class="button">try again</a>
-    {% endif %}
+    <div class="loading">
+      <div class="loading-spinner"></div>
+      <h1>logging in...</h1>
+      <p>please wait while we log you in with discord.</p>
+      {% if error %}
+        <div style="color:#ff3333; margin-top:2rem;">error: {{ error }}</div>
+        <a href="/login" class="button">try again</a>
+      {% endif %}
+    </div>
   </main>
   <footer>
     &copy; 2025 cherrybot
