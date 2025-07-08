@@ -19,11 +19,140 @@
   <main>
     <h1>commands</h1>
     <section>
-      <ul>
-        {% for cmd in commands %}
-        <li><strong>{{ cmd.name }}</strong>: {{ cmd.desc }}</li>
-        {% endfor %}
-      </ul>
+      <div class="card">
+        <h2>general</h2>
+        <ul>
+          <li><strong>/help</strong>: show this help message</li>
+          <li><strong>/ping</strong>: check bot latency</li>
+          <li><strong>/uptime</strong>: show bot uptime</li>
+          <li><strong>/info</strong>: show bot information</li>
+          <li><strong>/invite</strong>: get bot invite link</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>fun</h2>
+        <ul>
+          <li><strong>/8ball</strong>: ask the magic 8-ball</li>
+          <li><strong>/joke</strong>: get a random joke</li>
+          <li><strong>/fact</strong>: get a random fact</li>
+          <li><strong>/quote</strong>: get a random quote</li>
+          <li><strong>/choose</strong>: let the bot choose for you</li>
+          <li><strong>/reverse</strong>: reverse your text</li>
+          <li><strong>/countdown</strong>: start a countdown</li>
+          <li><strong>/poll</strong>: create a poll</li>
+          <li><strong>/urban</strong>: look up urban dictionary</li>
+          <li><strong>/hug</strong>: send virtual hugs</li>
+          <li><strong>/coinflip</strong>: flip a coin</li>
+          <li><strong>/cat</strong>: get random cat pictures</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>utility</h2>
+        <ul>
+          <li><strong>/avatar</strong>: show user avatar</li>
+          <li><strong>/serverinfo</strong>: show server info</li>
+          <li><strong>/userinfo</strong>: show user info</li>
+          <li><strong>/weather</strong>: check weather</li>
+          <li><strong>/remind</strong>: set a reminder</li>
+          <li><strong>/define</strong>: dictionary lookup</li>
+          <li><strong>/qr</strong>: generate qr code</li>
+          <li><strong>/color</strong>: show color info</li>
+          <li><strong>/translate</strong>: translate text</li>
+          <li><strong>/timezone</strong>: manage timezones</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>text</h2>
+        <ul>
+          <li><strong>/uppercase</strong>: convert to uppercase</li>
+          <li><strong>/lowercase</strong>: convert to lowercase</li>
+          <li><strong>/titlecase</strong>: convert to title case</li>
+          <li><strong>/alternating</strong>: alternating case</li>
+          <li><strong>/spongebob</strong>: spongebob case</li>
+          <li><strong>/wordcount</strong>: count words</li>
+          <li><strong>/remove</strong>: remove characters</li>
+          <li><strong>/replace</strong>: replace text</li>
+          <li><strong>/split</strong>: split text</li>
+          <li><strong>/join</strong>: join text</li>
+          <li><strong>/repeat</strong>: repeat text</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>image</h2>
+        <ul>
+          <li><strong>/blur</strong>: blur image</li>
+          <li><strong>/pixelate</strong>: pixelate image</li>
+          <li><strong>/invert</strong>: invert image colors</li>
+          <li><strong>/grayscale</strong>: convert to grayscale</li>
+          <li><strong>/resize</strong>: resize image</li>
+          <li><strong>/rotate</strong>: rotate image</li>
+          <li><strong>/flip</strong>: flip image</li>
+          <li><strong>/mirror</strong>: mirror image</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>ascii</h2>
+        <ul>
+          <li><strong>/ascii</strong>: convert to ascii art</li>
+          <li><strong>/figlet</strong>: create figlet text</li>
+          <li><strong>/box</strong>: create text box</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>music</h2>
+        <ul>
+          <li><strong>/play</strong>: play music</li>
+          <li><strong>/pause</strong>: pause music</li>
+          <li><strong>/resume</strong>: resume music</li>
+          <li><strong>/stop</strong>: stop music</li>
+          <li><strong>/skip</strong>: skip current song</li>
+          <li><strong>/queue</strong>: show music queue</li>
+          <li><strong>/volume</strong>: adjust volume</li>
+          <li><strong>/now</strong>: show current song</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>games</h2>
+        <ul>
+          <li><strong>/rps</strong>: rock paper scissors</li>
+          <li><strong>/tictactoe</strong>: tic tac toe game</li>
+          <li><strong>/hangman</strong>: hangman game</li>
+          <li><strong>/wordle</strong>: wordle game</li>
+          <li><strong>/dice</strong>: roll dice</li>
+          <li><strong>/slots</strong>: slot machine</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>moderation</h2>
+        <ul>
+          <li><strong>/kick</strong>: kick member</li>
+          <li><strong>/ban</strong>: ban member</li>
+          <li><strong>/unban</strong>: unban member</li>
+          <li><strong>/mute</strong>: mute member</li>
+          <li><strong>/unmute</strong>: unmute member</li>
+          <li><strong>/clear</strong>: clear messages</li>
+          <li><strong>/slowmode</strong>: set slowmode</li>
+          <li><strong>/warn</strong>: warn member</li>
+          <li><strong>/warnings</strong>: check warnings</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>security</h2>
+        <ul>
+          <li><strong>/antiraid</strong>: anti-raid settings</li>
+          <li><strong>/antispam</strong>: anti-spam settings</li>
+          <li><strong>/verification</strong>: verification settings</li>
+          <li><strong>/lockdown</strong>: lockdown channel</li>
+          <li><strong>/unlock</strong>: unlock channel</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>ai</h2>
+        <ul>
+          <li><strong>/chat</strong>: chat with ai</li>
+          <li><strong>/clear_chat</strong>: clear chat history</li>
+        </ul>
+      </div>
     </section>
   </main>
   <footer>
