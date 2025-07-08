@@ -1,17 +1,22 @@
 /* Base styles */
 :root {
     --primary-bg: #0a0a0a;
-    --secondary-bg: #1a1a1a;
+    --secondary-bg: #111111;
     --accent-red: #ff3333;
-    --accent-red-hover: #ff6666;
+    --accent-red-hover: #ff4444;
     --text-primary: #ffffff;
-    --text-secondary: #cccccc;
-    --border-color: #333333;
+    --text-secondary: #aaaaaa;
+    --border-color: #222222;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     line-height: 1.6;
     color: var(--text-primary);
@@ -24,28 +29,31 @@ body {
 /* Header */
 header {
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 3rem 1rem;
     background: var(--secondary-bg);
     border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1rem;
 }
 
 .bot-avatar {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    margin-bottom: 1rem;
-    border: 3px solid var(--accent-red);
+    margin-bottom: 1.5rem;
+    border: 2px solid var(--accent-red);
+    box-shadow: 0 0 20px rgba(255, 51, 51, 0.2);
 }
 
 header h1 {
-    margin: 0;
-    color: var(--text-primary);
     font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
 }
 
 header p {
     color: var(--text-secondary);
-    margin: 0.5rem 0;
+    font-size: 1.1rem;
 }
 
 /* Navigation */
@@ -56,102 +64,136 @@ nav {
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .nav-list {
     list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .nav-list a {
     color: var(--text-secondary);
     text-decoration: none;
     padding: 0.5rem 1rem;
-    border-radius: 4px;
+    border-radius: 6px;
     transition: all 0.2s ease;
-    text-transform: lowercase;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
 }
 
 .nav-list a:hover {
     color: var(--accent-red);
+    background: rgba(255, 51, 51, 0.1);
 }
 
 .nav-list a.active {
     color: var(--accent-red);
-    background: rgba(255, 51, 51, 0.1);
+    background: rgba(255, 51, 51, 0.15);
+    font-weight: 600;
 }
 
 /* Main content */
 main {
     flex: 1;
-    padding: 2rem;
+    padding: 2rem 1rem;
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
-    box-sizing: border-box;
 }
 
 /* Buttons */
 .invite-button, .discord-login-button, .save-button {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background-color: var(--accent-red);
     color: var(--text-primary);
-    padding: 0.8rem 1.5rem;
-    border-radius: 4px;
+    padding: 0.8rem 1.8rem;
+    border-radius: 6px;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 0.95rem;
     transition: all 0.2s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
     border: none;
     cursor: pointer;
+    margin-top: 1rem;
 }
 
 .invite-button:hover, .discord-login-button:hover, .save-button:hover {
     background-color: var(--accent-red-hover);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(255, 51, 51, 0.2);
+    box-shadow: 0 4px 15px rgba(255, 51, 51, 0.3);
 }
 
 /* Cards */
 .discord-login-card, .dashboard-card, .settings-card {
     background: var(--secondary-bg);
     padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
 }
 
 .server-card {
     background: var(--secondary-bg);
-    border-radius: 10px;
-    padding: 1.5rem;
+    border-radius: 12px;
+    padding: 2rem;
     text-align: center;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.2s ease;
     border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
 }
 
 .server-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(255, 51, 51, 0.2);
     border-color: var(--accent-red);
+    box-shadow: 0 5px 20px rgba(255, 51, 51, 0.2);
+}
+
+.server-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent-red);
+    transform: scaleX(0);
+    transition: transform 0.2s ease;
+}
+
+.server-card:hover::after {
+    transform: scaleX(1);
 }
 
 .server-card h3 {
-    color: var(--text-primary);
-    margin: 0.5rem 0;
+    margin: 1rem 0 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 
 .server-card p {
     color: var(--text-secondary);
+    font-size: 0.9rem;
 }
 
 /* Form elements */
+.setting-group {
+    margin-bottom: 1.5rem;
+}
+
 input[type="text"],
 input[type="number"],
 select,
@@ -159,10 +201,11 @@ textarea {
     background: var(--primary-bg);
     border: 1px solid var(--border-color);
     color: var(--text-primary);
-    padding: 0.5rem;
-    border-radius: 4px;
+    padding: 0.8rem;
+    border-radius: 6px;
     width: 100%;
-    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
 }
 
 input[type="text"]:focus,
@@ -171,14 +214,23 @@ select:focus,
 textarea:focus {
     border-color: var(--accent-red);
     outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 51, 51, 0.2);
 }
 
 /* Loading spinner */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
 .loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid var(--border-color);
-    border-top: 5px solid var(--accent-red);
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border-color);
+    border-top: 3px solid var(--accent-red);
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -188,13 +240,13 @@ textarea:focus {
     100% { transform: rotate(360deg); }
 }
 
-/* Guild Dashboard specific */
+/* Guild Dashboard */
 .guild-info {
     text-align: center;
     margin-bottom: 3rem;
     padding: 2rem;
     background: var(--secondary-bg);
-    border-radius: 10px;
+    border-radius: 12px;
     border: 1px solid var(--border-color);
 }
 
@@ -202,18 +254,22 @@ textarea:focus {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    margin: 2rem 0;
 }
 
 .setting-group label {
+    display: block;
     color: var(--text-secondary);
     margin-bottom: 0.5rem;
-    display: block;
+    font-size: 0.95rem;
+    font-weight: 500;
 }
 
 .setting-help {
     color: var(--text-secondary);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     margin-top: 0.5rem;
+    opacity: 0.8;
 }
 
 /* Success message */
@@ -222,9 +278,10 @@ textarea:focus {
     color: var(--accent-red);
     border: 1px solid var(--accent-red);
     padding: 1rem;
-    border-radius: 4px;
+    border-radius: 6px;
     margin-top: 1rem;
     text-align: center;
+    font-weight: 500;
 }
 
 /* Footer */
@@ -233,16 +290,21 @@ footer {
     padding: 2rem;
     background: var(--secondary-bg);
     border-top: 1px solid var(--border-color);
+    margin-top: auto;
+}
+
+footer p {
     color: var(--text-secondary);
+    font-size: 0.9rem;
 }
 
 /* User info section */
 .user-info {
     text-align: center;
     margin-bottom: 3rem;
-    padding: 2rem;
+    padding: 2.5rem;
     background: var(--secondary-bg);
-    border-radius: 10px;
+    border-radius: 12px;
     border: 1px solid var(--border-color);
 }
 
@@ -250,19 +312,23 @@ footer {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    margin-bottom: 1rem;
-    border: 3px solid var(--accent-red);
+    margin-bottom: 1.5rem;
+    border: 2px solid var(--accent-red);
+    box-shadow: 0 0 20px rgba(255, 51, 51, 0.2);
 }
 
 /* Back button */
 .back-button {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    margin-top: 1rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.6rem 1.2rem;
     color: var(--text-secondary);
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 6px;
     transition: all 0.2s ease;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-top: 1rem;
 }
 
 .back-button:hover {
@@ -270,35 +336,57 @@ footer {
     background: rgba(255, 51, 51, 0.1);
 }
 
+/* Notice styling */
+.notice {
+    background: rgba(255, 51, 51, 0.1);
+    color: var(--accent-red);
+    padding: 1rem;
+    border-radius: 6px;
+    margin: 1.5rem 0;
+    text-align: center;
+    border: 1px solid var(--accent-red);
+    font-weight: 500;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
-    .nav-list {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .settings-grid {
-        grid-template-columns: 1fr;
+    header {
+        padding: 2rem 1rem;
     }
 
     header h1 {
         font-size: 2rem;
     }
 
-    .bot-avatar {
-        width: 100px;
-        height: 100px;
+    .nav-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    .nav-list a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .settings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .server-card {
+        margin-bottom: 1rem;
+    }
+
+    main {
+        padding: 1rem;
     }
 }
 
-/* Notice styling */
-.notice {
-    background: rgba(255, 51, 51, 0.1);
-    color: var(--accent-red);
-    padding: 1rem;
-    border-radius: 4px;
-    margin: 1rem 0;
-    text-align: center;
-    border: 1px solid var(--accent-red);
+/* Dark mode optimization */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-bg: #0a0a0a;
+        --secondary-bg: #111111;
+        --border-color: #222222;
+    }
 }
