@@ -26,11 +26,18 @@
         // Get the code from URL
         const urlParams = new URLSearchParams(window.location.search);
         const code = urlParams.get('code');
+        const error = urlParams.get('error');
+        const errorDescription = urlParams.get('error_description');
         
-        debugLog('Checking for auth code...');
+        debugLog('Checking response parameters...');
         
-        if (code) {
-            debugLog('Auth code found: ' + code.substring(0, 10) + '...');
+        if (error) {
+            debugLog(`Error: ${error} - ${errorDescription}`);
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 2000);
+        } else if (code) {
+            debugLog('Auth code received');
             // Store the auth code temporarily
             sessionStorage.setItem('discord_auth_code', code);
             debugLog('Auth code stored in session storage');
@@ -41,9 +48,9 @@
                 window.location.href = 'dashboard.html';
             }, 1000);
         } else {
-            debugLog('No auth code found, redirecting to login...');
+            debugLog('No auth code or error found, redirecting to login...');
             setTimeout(() => {
-                window.location.href = 'index.html';
+                window.location.href = 'dashboard.html';
             }, 1000);
         }
     </script>
