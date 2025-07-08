@@ -3,259 +3,406 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CherryBot - Commands</title>
+    <title>cherrybot - commands</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
         <ul class="nav-list">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="commands.html" class="active">Commands</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="premium.html">Premium</a></li>
-            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="index.html">home</a></li>
+            <li><a href="commands.html" class="active">commands</a></li>
+            <li><a href="faq.html">faq</a></li>
+            <li><a href="premium.html">premium</a></li>
+            <li><a href="dashboard.html">dashboard</a></li>
         </ul>
     </nav>
 
     <main class="container">
-        <h1>Bot Commands</h1>
+        <h1>bot commands</h1>
         
         <div class="command-category">
             <div class="category-header">
-                <h2>🎵 Music Commands</h2>
+                <h2>music commands</h2>
             </div>
             <div class="commands-grid">
                 <div class="command-embed">
-                    <h3>/play</h3>
-                    <p>Play a song from YouTube or a supported platform</p>
-                    <div class="usage">/play [song name or URL]</div>
+                    <h3>/music join</h3>
+                    <p>join your voice channel</p>
+                    <div class="usage">/music join</div>
                 </div>
                 <div class="command-embed">
-                    <h3>/pause</h3>
-                    <p>Pause the current song</p>
-                    <div class="usage">/pause</div>
+                    <h3>/music play</h3>
+                    <p>play music from youtube</p>
+                    <div class="usage">/music play [song name or url]</div>
                 </div>
                 <div class="command-embed">
-                    <h3>/resume</h3>
-                    <p>Resume the paused song</p>
-                    <div class="usage">/resume</div>
+                    <h3>/music pause</h3>
+                    <p>pause current track</p>
+                    <div class="usage">/music pause</div>
                 </div>
                 <div class="command-embed">
-                    <h3>/skip</h3>
-                    <p>Skip to the next song in queue</p>
-                    <div class="usage">/skip</div>
+                    <h3>/music resume</h3>
+                    <p>resume current track</p>
+                    <div class="usage">/music resume</div>
                 </div>
                 <div class="command-embed">
-                    <h3>/queue</h3>
-                    <p>View the current music queue</p>
-                    <div class="usage">/queue [page number]</div>
+                    <h3>/music skip</h3>
+                    <p>skip current track</p>
+                    <div class="usage">/music skip</div>
                 </div>
                 <div class="command-embed">
-                    <h3>/nowplaying</h3>
-                    <p>Show information about the current song</p>
-                    <div class="usage">/nowplaying</div>
+                    <h3>/music stop</h3>
+                    <p>stop and clear queue</p>
+                    <div class="usage">/music stop</div>
                 </div>
                 <div class="command-embed">
-                    <h3>/volume</h3>
-                    <p>Adjust the music volume</p>
-                    <div class="usage">/volume [0-100]</div>
+                    <h3>/music queue</h3>
+                    <p>show current queue</p>
+                    <div class="usage">/music queue</div>
                 </div>
                 <div class="command-embed">
-                    <h3>/loop</h3>
-                    <p>Toggle loop mode for current song or queue</p>
-                    <div class="usage">/loop [song/queue/off]</div>
-                </div>
-                <div class="command-embed">
-                    <h3>/shuffle</h3>
-                    <p>Shuffle the current queue</p>
-                    <div class="usage">/shuffle</div>
-                </div>
-                <div class="command-embed">
-                    <h3>/lyrics</h3>
-                    <p>Get lyrics for the current song</p>
-                    <div class="usage">/lyrics</div>
+                    <h3>/music leave</h3>
+                    <p>leave voice channel</p>
+                    <div class="usage">/music leave</div>
                 </div>
             </div>
         </div>
 
         <div class="command-category">
             <div class="category-header">
-                <h2>⚙️ Utility Commands</h2>
+                <h2>general commands</h2>
             </div>
             <div class="commands-grid">
                 <div class="command-embed">
                     <h3>/help</h3>
-                    <p>Display a list of available commands</p>
-                    <div class="usage">/help [command name]</div>
+                    <p>show this help message</p>
+                    <div class="usage">/help [category]</div>
                 </div>
                 <div class="command-embed">
                     <h3>/ping</h3>
-                    <p>Check the bot's response time</p>
+                    <p>check bot latency</p>
                     <div class="usage">/ping</div>
                 </div>
                 <div class="command-embed">
+                    <h3>/uptime</h3>
+                    <p>show bot uptime</p>
+                    <div class="usage">/uptime</div>
+                </div>
+                <div class="command-embed">
                     <h3>/info</h3>
-                    <p>Get information about the bot</p>
+                    <p>show bot information</p>
                     <div class="usage">/info</div>
                 </div>
                 <div class="command-embed">
-                    <h3>/serverinfo</h3>
-                    <p>Display information about the server</p>
-                    <div class="usage">/serverinfo</div>
-                </div>
-                <div class="command-embed">
-                    <h3>/userinfo</h3>
-                    <p>Show information about a user</p>
-                    <div class="usage">/userinfo [@user]</div>
-                </div>
-                <div class="command-embed">
-                    <h3>/avatar</h3>
-                    <p>Get a user's avatar</p>
-                    <div class="usage">/avatar [@user]</div>
-                </div>
-                <div class="command-embed">
-                    <h3>/remind</h3>
-                    <p>Set a reminder</p>
-                    <div class="usage">/remind [time] [message]</div>
-                </div>
-                <div class="command-embed">
-                    <h3>/poll</h3>
-                    <p>Create a poll</p>
-                    <div class="usage">/poll [question] [options]</div>
+                    <h3>/invite</h3>
+                    <p>get bot invite link</p>
+                    <div class="usage">/invite</div>
                 </div>
             </div>
         </div>
 
         <div class="command-category">
             <div class="category-header">
-                <h2>🎮 Fun Commands</h2>
+                <h2>fun commands</h2>
             </div>
             <div class="commands-grid">
                 <div class="command-embed">
                     <h3>/8ball</h3>
-                    <p>Ask the magic 8ball a question</p>
+                    <p>ask the magic 8-ball</p>
                     <div class="usage">/8ball [question]</div>
                 </div>
                 <div class="command-embed">
-                    <h3>/roll</h3>
-                    <p>Roll a random number</p>
-                    <div class="usage">/roll [max number]</div>
-                </div>
-                <div class="command-embed">
                     <h3>/joke</h3>
-                    <p>Get a random joke</p>
+                    <p>get a random joke</p>
                     <div class="usage">/joke</div>
                 </div>
                 <div class="command-embed">
-                    <h3>/meme</h3>
-                    <p>Get a random meme</p>
-                    <div class="usage">/meme</div>
+                    <h3>/fact</h3>
+                    <p>get a random fact</p>
+                    <div class="usage">/fact</div>
                 </div>
                 <div class="command-embed">
-                    <h3>/cat</h3>
-                    <p>Get a random cat picture</p>
-                    <div class="usage">/cat</div>
+                    <h3>/quote</h3>
+                    <p>get a random quote</p>
+                    <div class="usage">/quote</div>
                 </div>
                 <div class="command-embed">
-                    <h3>/dog</h3>
-                    <p>Get a random dog picture</p>
-                    <div class="usage">/dog</div>
+                    <h3>/choose</h3>
+                    <p>let the bot choose for you</p>
+                    <div class="usage">/choose [options]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/reverse</h3>
+                    <p>reverse your text</p>
+                    <div class="usage">/reverse [text]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/countdown</h3>
+                    <p>start a countdown</p>
+                    <div class="usage">/countdown [time]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/poll</h3>
+                    <p>create a poll</p>
+                    <div class="usage">/poll [question] [options]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/urban</h3>
+                    <p>look up urban dictionary</p>
+                    <div class="usage">/urban [term]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/hug</h3>
+                    <p>send virtual hugs</p>
+                    <div class="usage">/hug [@user]</div>
                 </div>
                 <div class="command-embed">
                     <h3>/coinflip</h3>
-                    <p>Flip a coin</p>
+                    <p>flip a coin</p>
                     <div class="usage">/coinflip</div>
                 </div>
                 <div class="command-embed">
-                    <h3>/rps</h3>
-                    <p>Play rock, paper, scissors</p>
-                    <div class="usage">/rps [rock/paper/scissors]</div>
+                    <h3>/cat</h3>
+                    <p>get random cat pictures</p>
+                    <div class="usage">/cat</div>
                 </div>
             </div>
         </div>
 
         <div class="command-category">
             <div class="category-header">
-                <h2>🛡️ Moderation Commands</h2>
+                <h2>utility commands</h2>
+            </div>
+            <div class="commands-grid">
+                <div class="command-embed">
+                    <h3>/avatar</h3>
+                    <p>show user avatar</p>
+                    <div class="usage">/avatar [@user]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/serverinfo</h3>
+                    <p>show server info</p>
+                    <div class="usage">/serverinfo</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/userinfo</h3>
+                    <p>show user info</p>
+                    <div class="usage">/userinfo [@user]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/weather</h3>
+                    <p>check weather</p>
+                    <div class="usage">/weather [location]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/remind</h3>
+                    <p>set a reminder</p>
+                    <div class="usage">/remind [time] [message]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/define</h3>
+                    <p>dictionary lookup</p>
+                    <div class="usage">/define [word]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/qr</h3>
+                    <p>generate qr code</p>
+                    <div class="usage">/qr [text]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/color</h3>
+                    <p>show color info</p>
+                    <div class="usage">/color [hex]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/translate</h3>
+                    <p>translate text</p>
+                    <div class="usage">/translate [text] [language]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/timezone</h3>
+                    <p>manage timezones</p>
+                    <div class="usage">/timezone [set/list]</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="command-category">
+            <div class="category-header">
+                <h2>text commands</h2>
+            </div>
+            <div class="commands-grid">
+                <div class="command-embed">
+                    <h3>/uppercase</h3>
+                    <p>convert to uppercase</p>
+                    <div class="usage">/uppercase [text]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/lowercase</h3>
+                    <p>convert to lowercase</p>
+                    <div class="usage">/lowercase [text]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/titlecase</h3>
+                    <p>convert to title case</p>
+                    <div class="usage">/titlecase [text]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/alternating</h3>
+                    <p>alternating case</p>
+                    <div class="usage">/alternating [text]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/spongebob</h3>
+                    <p>spongebob case</p>
+                    <div class="usage">/spongebob [text]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/wordcount</h3>
+                    <p>count words</p>
+                    <div class="usage">/wordcount [text]</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="command-category">
+            <div class="category-header">
+                <h2>games commands</h2>
+            </div>
+            <div class="commands-grid">
+                <div class="command-embed">
+                    <h3>/rps</h3>
+                    <p>rock paper scissors</p>
+                    <div class="usage">/rps [choice]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/tictactoe</h3>
+                    <p>tic tac toe game</p>
+                    <div class="usage">/tictactoe [@opponent]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/hangman</h3>
+                    <p>hangman game</p>
+                    <div class="usage">/hangman</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/wordle</h3>
+                    <p>wordle game</p>
+                    <div class="usage">/wordle</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/dice</h3>
+                    <p>roll dice</p>
+                    <div class="usage">/dice [sides]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/slots</h3>
+                    <p>slot machine</p>
+                    <div class="usage">/slots</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="command-category">
+            <div class="category-header">
+                <h2>moderation commands</h2>
             </div>
             <div class="commands-grid">
                 <div class="command-embed">
                     <h3>/kick</h3>
-                    <p>Kick a member from the server</p>
+                    <p>kick member</p>
                     <div class="usage">/kick [@user] [reason]</div>
                 </div>
                 <div class="command-embed">
                     <h3>/ban</h3>
-                    <p>Ban a member from the server</p>
+                    <p>ban member</p>
                     <div class="usage">/ban [@user] [reason]</div>
                 </div>
                 <div class="command-embed">
+                    <h3>/unban</h3>
+                    <p>unban member</p>
+                    <div class="usage">/unban [user id]</div>
+                </div>
+                <div class="command-embed">
                     <h3>/mute</h3>
-                    <p>Mute a member in the server</p>
+                    <p>mute member</p>
                     <div class="usage">/mute [@user] [duration] [reason]</div>
                 </div>
                 <div class="command-embed">
                     <h3>/unmute</h3>
-                    <p>Unmute a muted member</p>
+                    <p>unmute member</p>
                     <div class="usage">/unmute [@user]</div>
                 </div>
                 <div class="command-embed">
-                    <h3>/warn</h3>
-                    <p>Warn a member</p>
-                    <div class="usage">/warn [@user] [reason]</div>
-                </div>
-                <div class="command-embed">
-                    <h3>/warnings</h3>
-                    <p>View warnings for a member</p>
-                    <div class="usage">/warnings [@user]</div>
-                </div>
-                <div class="command-embed">
                     <h3>/clear</h3>
-                    <p>Clear messages in a channel</p>
+                    <p>clear messages</p>
                     <div class="usage">/clear [amount]</div>
                 </div>
                 <div class="command-embed">
                     <h3>/slowmode</h3>
-                    <p>Set channel slowmode</p>
+                    <p>set slowmode</p>
                     <div class="usage">/slowmode [seconds]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/warn</h3>
+                    <p>warn member</p>
+                    <div class="usage">/warn [@user] [reason]</div>
+                </div>
+                <div class="command-embed">
+                    <h3>/warnings</h3>
+                    <p>check warnings</p>
+                    <div class="usage">/warnings [@user]</div>
                 </div>
             </div>
         </div>
 
         <div class="command-category">
             <div class="category-header">
-                <h2>⭐ Premium Commands</h2>
+                <h2>security commands</h2>
             </div>
             <div class="commands-grid">
                 <div class="command-embed">
-                    <h3>/autoplay</h3>
-                    <p>Toggle autoplay for music</p>
-                    <div class="usage">/autoplay</div>
+                    <h3>/antiraid</h3>
+                    <p>anti-raid settings</p>
+                    <div class="usage">/antiraid [on/off]</div>
                 </div>
                 <div class="command-embed">
-                    <h3>/playlist</h3>
-                    <p>Save and load custom playlists</p>
-                    <div class="usage">/playlist [save/load] [name]</div>
+                    <h3>/antispam</h3>
+                    <p>anti-spam settings</p>
+                    <div class="usage">/antispam [on/off]</div>
                 </div>
                 <div class="command-embed">
-                    <h3>/welcome</h3>
-                    <p>Customize welcome messages</p>
-                    <div class="usage">/welcome [message]</div>
+                    <h3>/verification</h3>
+                    <p>verification settings</p>
+                    <div class="usage">/verification [setup/disable]</div>
                 </div>
                 <div class="command-embed">
-                    <h3>/autorole</h3>
-                    <p>Set automatic roles for new members</p>
-                    <div class="usage">/autorole [@role]</div>
+                    <h3>/lockdown</h3>
+                    <p>lockdown channel</p>
+                    <div class="usage">/lockdown [reason]</div>
                 </div>
                 <div class="command-embed">
-                    <h3>/reactionrole</h3>
-                    <p>Create reaction role messages</p>
-                    <div class="usage">/reactionrole [create/edit]</div>
+                    <h3>/unlock</h3>
+                    <p>unlock channel</p>
+                    <div class="usage">/unlock</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="command-category">
+            <div class="category-header">
+                <h2>ai commands</h2>
+            </div>
+            <div class="commands-grid">
+                <div class="command-embed">
+                    <h3>/chat</h3>
+                    <p>chat with ai</p>
+                    <div class="usage">/chat [message]</div>
                 </div>
                 <div class="command-embed">
-                    <h3>/customcommand</h3>
-                    <p>Create custom commands</p>
-                    <div class="usage">/customcommand [create/edit] [name]</div>
+                    <h3>/clear_chat</h3>
+                    <p>clear chat history</p>
+                    <div class="usage">/clear_chat</div>
                 </div>
             </div>
         </div>
