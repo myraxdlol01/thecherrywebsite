@@ -1,144 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CherryBot - Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>cherry dashboard</title>
+  <meta name="description" content="CherryBot dashboard to manage your server and view bot statistics." />
+  <meta property="og:title" content="cherry dashboard" />
+  <meta property="og:description" content="Manage your server settings and view CherryBot statistics." />
+  <meta property="og:image" content="bot-avatar.jpg" />
+  <meta property="og:url" content="https://thecherrywebsite.pages.dev/dashboard.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
-    <nav>
-        <ul class="nav-list">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="commands.html">Commands</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="premium.html">Premium</a></li>
-            <li><a href="dashboard.html" class="active">Dashboard</a></li>
-        </ul>
-    </nav>
+  <header>
+    <img src="bot-avatar.jpg" alt="CherryBot's avatar" class="bot-avatar" />
+    <h1>cherry dashboard</h1>
+    <p>manage your server settings and view statistics</p>
+  </header>
 
-    <main class="container">
-        <div id="loading" class="loading-container">
-            <div class="loading-spinner"></div>
-            <h2>Loading Dashboard</h2>
-            <p>Please wait while we fetch your information...</p>
-        </div>
+  <nav>
+    <ul class="nav-list">
+      <li><a href="index.html">home</a></li>
+      <li><a href="commands.html">commands</a></li>
+      <li><a href="dashboard.html" class="active">dashboard</a></li>
+      <li><a href="premium.html">premium</a></li>
+      <li><a href="faq.html">faq</a></li>
+    </ul>
+  </nav>
 
-        <div id="error" class="error-message" style="display: none;">
-            <p>Failed to load dashboard. Please try logging in again.</p>
-        </div>
+  <main>
+    <div class="discord-login-container">
+      <div class="discord-login-card">
+        <img src="bot-avatar.jpg" alt="Discord logo" class="discord-logo">
+        <h2>Welcome to cherry's dashboard</h2>
+        <p>Please login with Discord to manage your server settings</p>
+        <a href="https://discord.com/oauth2/authorize?client_id=1391355916502433874&permissions=8&response_type=code&redirect_uri=https%3A%2F%2Fthecherrywebsite.pages.dev%2Fcallback.html&integration_type=0&scope=identify+bot+guilds+applications.commands" class="discord-login-button">
+          Login with Discord
+        </a>
+      </div>
+    </div>
 
-        <div id="dashboard" style="display: none;">
-            <!-- Dashboard content will be loaded here -->
-        </div>
-    </main>
-
+    <!-- Example chart section -->
+    <canvas id="statsChart"></canvas>
     <script>
-        const CLIENT_ID = '1391355916502433874'; // Your actual client ID
-        const REDIRECT_URI = encodeURIComponent(window.location.origin + '/callback.html');
-        const API_ENDPOINT = 'https://discord.com/api/v10';
-        
-        async function checkAuth() {
-            const token = localStorage.getItem('discord_token');
-            const tokenExpiry = localStorage.getItem('token_expiry');
-            
-            if (!token || !tokenExpiry || Date.now() >= parseInt(tokenExpiry)) {
-                // Token is missing or expired
-                localStorage.removeItem('discord_token');
-                localStorage.removeItem('token_expiry');
-                redirectToLogin();
-                return;
+      const ctx = document.getElementById('statsChart').getContext('2d');
+      const statsChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Guilds', 'Commands Used', 'Users'],
+          datasets: [{
+            label: 'Bot Stats',
+            data: [57, 234, 1024], // Replace with dynamic data
+            backgroundColor: ['#ff4d88', '#9966ff', '#4dd2ff']
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            title: {
+              display: true,
+              text: 'CherryBot Usage Stats',
+              color: '#fff',
+              font: {
+                size: 18
+              }
             }
-
-            try {
-                const response = await fetch(`${API_ENDPOINT}/users/@me`, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error('Failed to fetch user data');
-                }
-
-                const userData = await response.json();
-                await loadDashboard(userData);
-            } catch (error) {
-                console.error('Auth check failed:', error);
-                showError();
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: { color: '#fff' },
+              grid: { color: '#333' }
+            },
+            x: {
+              ticks: { color: '#fff' },
+              grid: { color: '#333' }
             }
+          }
         }
-
-        function redirectToLogin() {
-            const scope = encodeURIComponent('identify guilds');
-            const loginUrl = `https://discord.com/oauth2/authorize?client_id=1391355916502433874&permissions=8&response_type=code&redirect_uri=+https%3A%2F%2Fthecherrywebsite.pages.dev%2Fcallback.html&integration_type=0&scope=identify+bot+guilds+applications.commands`;
-            window.location.href = loginUrl;
-        }
-
-        async function loadDashboard(userData) {
-            try {
-                const guildsResponse = await fetch(`${API_ENDPOINT}/users/@me/guilds`, {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('discord_token')}`
-                    }
-                });
-
-                if (!guildsResponse.ok) {
-                    throw new Error('Failed to fetch guilds');
-                }
-
-                const guilds = await guildsResponse.json();
-                
-                // Hide loading screen
-                document.getElementById('loading').style.display = 'none';
-                
-                // Show dashboard
-                const dashboardElement = document.getElementById('dashboard');
-                dashboardElement.style.display = 'block';
-                
-                // Render user profile
-                dashboardElement.innerHTML = `
-                    <div class="user-profile">
-                        <img src="https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png" alt="Profile" class="avatar">
-                        <h2>${userData.username}</h2>
-                        <p class="user-tag">#${userData.discriminator}</p>
-                    </div>
-                    
-                    <div class="servers-section">
-                        <h3>Your Servers</h3>
-                        <div class="servers-grid">
-                            ${guilds.map(guild => `
-                                <div class="server-card">
-                                    <img src="${guild.icon 
-                                        ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png` 
-                                        : 'default-server-icon.png'}" 
-                                        alt="${guild.name}" class="server-icon">
-                                    <h4>${guild.name}</h4>
-                                    <button onclick="window.location.href='guild_dashboard.html?id=${guild.id}'" 
-                                            class="button">Manage Server</button>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                `;
-            } catch (error) {
-                console.error('Dashboard loading failed:', error);
-                showError();
-            }
-        }
-
-        function showError() {
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('error').style.display = 'flex';
-            setTimeout(() => {
-                localStorage.removeItem('discord_token');
-                localStorage.removeItem('token_expiry');
-                redirectToLogin();
-            }, 3000);
-        }
-
-        // Start the auth check when page loads
-        document.addEventListener('DOMContentLoaded', checkAuth);
+      });
     </script>
+  </main>
+
+  <footer>
+    <p>made with care by chérie</p>
+  </footer>
 </body>
-</html> 
+</html>
