@@ -3,16 +3,68 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>cherry • faq</title>
+  <title>cherry - faq</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .faq-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .faq-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .faq-question {
+      color: var(--accent-color);
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .faq-answer {
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    .faq-section {
+      margin-bottom: 2rem;
+    }
+
+    .faq-section h2 {
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 1.8rem;
+    }
+
+    .notice {
+      background: var(--accent-color);
+      color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
 
-  <header>
+  <header style="text-align:center; margin-top:2rem;">
     <img src="bot-avatar.jpg" alt="cherrybot avatar" class="bot-avatar" />
     <h1>cherry</h1>
-    <p>discord utility bot with many great commands.</p>
-    <a class="invite-button" href="https://discord.com/oauth2/authorize?client_id=1391355916502433874&redirect_uri=https%3A%2F%2Fthecherrywebsite.pages.dev%2Fcallback.html&response_type=code&scope=identify%20guilds%20applications.commands%20bot&permissions=8" target="_blank" rel="noopener noreferrer">invite cherry</a>
+    <p>frequently asked questions</p>
   </header>
 
   <nav>
@@ -26,33 +78,90 @@
     </ul>
   </nav>
 
-  <main>
-    <h2>frequently asked questions</h2>
-    <dl>
-      <dt>how do i add cherry to my server?</dt>
-      <dd>Click the <strong>invite cherry</strong> button at the top of any page, or use <code>/invite</code> inside Discord.</dd>
+  <main class="faq-container">
+    <div class="notice">
+      Have a question not listed here? Join our <a href="https://discord.gg/cheriez" style="color: white; text-decoration: underline;">support server</a>!
+    </div>
 
-      <dt>what permissions does the bot need?</dt>
-      <dd>It needs <em>View Channels</em>, <em>Send Messages</em>, <em>Embed Links</em>, and for moderation features, permissions like Ban/Kick/Manage Messages. The invite link includes the recommended permissions.</dd>
+    <div class="faq-section">
+      <h2>general questions</h2>
+      
+      <div class="faq-card">
+        <div class="faq-question">what is cherry?</div>
+        <div class="faq-answer">
+          cherry is a versatile discord bot designed to enhance your server with utility commands, moderation tools, fun features, and more. it's built with a focus on user experience and reliability.
+        </div>
+      </div>
 
-      <dt>is cherry free?</dt>
-      <dd>Yes! All core features are free. Premium simply helps support hosting and unlocks fun cosmetic perks.</dd>
+      <div class="faq-card">
+        <div class="faq-question">is cherry free to use?</div>
+        <div class="faq-answer">
+          yes! all of cherry's features are currently free to use. while we plan to introduce premium features in the future, our core functionality will always remain free.
+        </div>
+      </div>
 
-      <dt>how can i report a bug or suggest a feature?</dt>
-      <dd>Join our community Discord (link at the top of this page) and post in <code>#feedback</code>.</dd>
+      <div class="faq-card">
+        <div class="faq-question">how do i invite cherry to my server?</div>
+        <div class="faq-answer">
+          you can invite cherry by clicking the "invite cherry" button on our homepage. you'll need administrator permissions in your server to add the bot.
+        </div>
+      </div>
+    </div>
 
-      <dt>the slash commands aren’t showing up!</dt>
-      <dd>
-        Make sure the bot has the <em>applications.commands</em> scope checked on the invite.  
-        If you just added the bot, wait a minute or type <code>/</code> then search “cherry.”  
-        If issues persist, re-invite the bot or contact support.
-      </dd>
-    </dl>
+    <div class="faq-section">
+      <h2>features & commands</h2>
+      
+      <div class="faq-card">
+        <div class="faq-question">what commands does cherry offer?</div>
+        <div class="faq-answer">
+          cherry offers a wide range of commands including moderation, utility, fun, music, and more. check out our <a href="commands.html">commands page</a> for a complete list!
+        </div>
+      </div>
+
+      <div class="faq-card">
+        <div class="faq-question">how do i use cherry's commands?</div>
+        <div class="faq-answer">
+          all of cherry's commands use slash commands (/). just type / in your discord chat and you'll see a list of available commands. you can also check our commands page for detailed usage instructions.
+        </div>
+      </div>
+
+      <div class="faq-card">
+        <div class="faq-question">can i customize cherry's settings?</div>
+        <div class="faq-answer">
+          yes! you can customize various settings through our <a href="dashboard.html">dashboard</a>. this includes prefix settings, welcome messages, auto-mod configurations, and more.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-section">
+      <h2>support</h2>
+      
+      <div class="faq-card">
+        <div class="faq-question">how do i get help with cherry?</div>
+        <div class="faq-answer">
+          the best way to get help is to join our <a href="https://discord.gg/cheriez">support server</a>. our team and community are always ready to help with any questions or issues you might have.
+        </div>
+      </div>
+
+      <div class="faq-card">
+        <div class="faq-question">i found a bug, where do i report it?</div>
+        <div class="faq-answer">
+          please report any bugs in our support server's #bug-reports channel. include as much detail as possible about what happened and steps to reproduce the issue.
+        </div>
+      </div>
+
+      <div class="faq-card">
+        <div class="faq-question">can i suggest new features?</div>
+        <div class="faq-answer">
+          absolutely! we love hearing your ideas. join our support server and share your suggestions in the #suggestions channel.
+        </div>
+      </div>
+    </div>
   </main>
 
-  <footer>
+  <footer style="text-align:center; margin-top:3rem;">
     <p>made with care by chérie</p>
   </footer>
-  
+
 </body>
 </html>
