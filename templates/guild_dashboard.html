@@ -55,8 +55,18 @@
       </section>
       <section>
         <h2>commands</h2>
+wywhwx-codex/update-website-design-and-css
+        <label><input type="checkbox" name="general_cmds" {% if settings.commands.general %}checked{% endif %}> general</label>
+        <label><input type="checkbox" name="utility_cmds" {% if settings.commands.utility %}checked{% endif %}> utility</label>
+        <label><input type="checkbox" name="moderation_cmds" {% if settings.commands.moderation %}checked{% endif %}> moderation</label>
+        <label><input type="checkbox" name="security_cmds" {% if settings.commands.security %}checked{% endif %}> security</label>
         <label><input type="checkbox" name="fun_cmds" {% if settings.commands.fun %}checked{% endif %}> fun</label>
         <label><input type="checkbox" name="music_cmds" {% if settings.commands.music %}checked{% endif %}> music</label>
+        <label><input type="checkbox" name="text_cmds" {% if settings.commands.text %}checked{% endif %}> text</label>
+        <label><input type="checkbox" name="image_cmds" {% if settings.commands.image %}checked{% endif %}> image</label>
+        <label><input type="checkbox" name="ascii_cmds" {% if settings.commands.ascii %}checked{% endif %}> ascii</label>
+        <label><input type="checkbox" name="games_cmds" {% if settings.commands.games %}checked{% endif %}> games</label>
+
         <label><input type="checkbox" name="ai_cmds" {% if settings.commands.ai %}checked{% endif %}> ai</label>
       </section>
       <button type="submit" class="button">save settings</button>
