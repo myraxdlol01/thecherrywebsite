@@ -9,6 +9,9 @@
   <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
 </head>
 <body class="dashboard">
+  <div id="page-loader">
+    <div class="loading-spinner"></div>
+  </div>
   <nav>
     <ul>
       <li><a href="/">home</a></li>
@@ -26,17 +29,22 @@
       </section>
       <section>
         <h2>your servers</h2>
+        {% if guilds %}
         <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
           {% for guild in guilds %}
             <div class="server-card">
               <img src="https://cdn.discordapp.com/icons/{{ guild['id'] }}/{{ guild['icon'] }}.png?size=64" alt="server icon">
-              <div>
-                <div style="font-weight:600; color:#fff; font-size:1.1rem; margin-bottom:0.2rem;">{{ guild['name'] }}</div>
+              <div class="info">
+                <div class="name">{{ guild['name'] }}</div>
                 <a href="/guild/{{ guild['id'] }}" class="button">manage</a>
               </div>
             </div>
           {% endfor %}
         </div>
+        {% else %}
+        <p>the bot isn't in any of your servers.</p>
+        <p><a href="https://discord.com/oauth2/authorize?client_id={{ DISCORD_CLIENT_ID }}&scope=bot&permissions=8" class="button" target="_blank">invite cherrybot</a></p>
+        {% endif %}
       </section>
     {% else %}
       <a href="/login" class="button">log in with discord</a>
