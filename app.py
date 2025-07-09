@@ -1,4 +1,3 @@
-
 import os
 from flask import Flask, render_template, redirect, url_for, session, request, jsonify
 from requests_oauthlib import OAuth2Session
@@ -33,7 +32,6 @@ def make_session(token=None, state=None, scope=None):
 
 
 def get_bot_guild_ids():
-    """Return a set of guild IDs the bot is a member of."""
     if not DISCORD_BOT_TOKEN:
         return set()
     headers = {"Authorization": f"Bot {DISCORD_BOT_TOKEN}"}
@@ -112,7 +110,6 @@ def logout():
 def guild_dashboard(guild_id):
     if 'discord_token' not in session:
         return redirect(url_for('login'))
-    # Placeholder: Load and save settings here
     if request.method == 'POST':
         updated = {
             'leveling': 'leveling' in request.form,
@@ -126,9 +123,6 @@ def guild_dashboard(guild_id):
                 'kick': 'kick' in request.form
             },
             'commands': {
-
- 
-main
                 'general': 'general_cmds' in request.form,
                 'utility': 'utility_cmds' in request.form,
                 'moderation': 'moderation_cmds' in request.form,
@@ -144,7 +138,6 @@ main
         }
         print('updated settings for', guild_id, updated)
         return redirect(url_for('dashboard'))
-    # Example settings
     settings = {
         'leveling': True,
         'prefix': '!',
@@ -153,9 +146,6 @@ main
         'log_channel': '',
         'autoroles': ['member'],
         'moderation': {'ban': True, 'kick': True},
-
- 
-
         'commands': {
             'general': True,
             'utility': True,
@@ -169,8 +159,6 @@ main
             'games': True,
             'ai': True
         }
- 
-
     }
     return render_template('guild_dashboard.html', guild_id=guild_id, settings=settings)
 
