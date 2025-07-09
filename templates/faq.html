@@ -9,6 +9,9 @@
   <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
 </head>
 <body class="faq">
+  <div id="page-loader">
+    <div class="loading-spinner"></div>
+  </div>
   <nav>
     <ul>
       <li><a href="/">home</a></li>
@@ -21,12 +24,18 @@
     <img src="{{ url_for('static', filename='botpfp.jpg') }}" alt="cherrybot pfp" class="bot-pfp" loading="eager">
     <h1>faq</h1>
     <section>
-      <h2>how do i add cherrybot to my server?</h2>
-      <p>invite cherrybot using the official invite link from the dashboard or the bot's website.</p>
-      <h2>how do i use commands?</h2>
-      <p>type a slash (/) in your discord server to see all available commands.</p>
-      <h2>who can change server settings?</h2>
-      <p>only users with the right discord permissions (like manage server) can change settings here.</p>
+      <div class="card faq-item">
+        <h2>how do i add cherrybot to my server?</h2>
+        <p>invite cherrybot using the official invite link from the dashboard or the bot's website.</p>
+      </div>
+      <div class="card faq-item">
+        <h2>how do i use commands?</h2>
+        <p>type a slash (/) in your discord server to see all available commands.</p>
+      </div>
+      <div class="card faq-item">
+        <h2>who can change server settings?</h2>
+        <p>only users with the right discord permissions (like manage server) can change settings here.</p>
+      </div>
     </section>
   </main>
   <footer>
