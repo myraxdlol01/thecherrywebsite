@@ -63,7 +63,7 @@ def dashboard():
         return redirect(url_for('login'))
     user = session.get('user')
     guilds = session.get('guilds', [])
-    return render_template('dashboard.html', user=user, guilds=guilds)
+    return render_template('dashboard.html', user=user, guilds=guilds, DISCORD_CLIENT_ID=DISCORD_CLIENT_ID)
 
 @app.route('/login')
 def login():
@@ -126,8 +126,16 @@ def guild_dashboard(guild_id):
                 'kick': 'kick' in request.form
             },
             'commands': {
+                'general': 'general_cmds' in request.form,
+                'utility': 'utility_cmds' in request.form,
+                'moderation': 'moderation_cmds' in request.form,
+                'security': 'security_cmds' in request.form,
                 'fun': 'fun_cmds' in request.form,
                 'music': 'music_cmds' in request.form,
+                'text': 'text_cmds' in request.form,
+                'image': 'image_cmds' in request.form,
+                'ascii': 'ascii_cmds' in request.form,
+                'games': 'games_cmds' in request.form,
                 'ai': 'ai_cmds' in request.form
             }
         }
@@ -142,7 +150,19 @@ def guild_dashboard(guild_id):
         'log_channel': '',
         'autoroles': ['member'],
         'moderation': {'ban': True, 'kick': True},
-        'commands': {'fun': True, 'music': True, 'ai': True}
+        'commands': {
+            'general': True,
+            'utility': True,
+            'moderation': True,
+            'security': True,
+            'fun': True,
+            'music': True,
+            'text': True,
+            'image': True,
+            'ascii': True,
+            'games': True,
+            'ai': True
+        }
     }
     return render_template('guild_dashboard.html', guild_id=guild_id, settings=settings)
 

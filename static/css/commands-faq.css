@@ -11,7 +11,7 @@ body.commands, body.faq {
 
 nav {
   background: rgba(0,0,0,0.98);
-  box-shadow: 0 2px 16px #ff00551a;
+  box-shadow: 0 2px 16px rgba(255,51,51,0.1);
   backdrop-filter: blur(6px);
 }
 
@@ -21,32 +21,32 @@ nav {
   width: 96px;
   height: 96px;
   border-radius: 50%;
-  box-shadow: 0 0 24px 4px #ff0055cc, 0 2px 16px #0008;
-  border: 3px solid #ff0055;
+  box-shadow: 0 0 24px 4px rgba(255,51,51,0.8), 0 2px 16px #0008;
+  border: 3px solid var(--accent);
   background: #111;
   object-fit: cover;
   transition: box-shadow 0.22s, border 0.22s;
 }
 
 .bot-pfp:hover {
-  box-shadow: 0 0 48px 8px #ff0055ee, 0 4px 32px #000a;
+  box-shadow: 0 0 48px 8px rgba(255,51,51,0.9), 0 4px 32px #000a;
   border: 3px solid #fff;
 }
 
 .card {
   background: linear-gradient(120deg, #000 80%, #33000055 100%);
   border-radius: 16px;
-  box-shadow: 0 4px 32px #ff00551a, 0 2px 12px #0002;
+  box-shadow: 0 4px 32px rgba(255,51,51,0.1), 0 2px 12px #0002;
   padding: 2.3rem 1.7rem;
   margin-bottom: 2.2rem;
-  border-left: 4px solid #ff0055;
+  border-left: 4px solid var(--accent);
   transition: border 0.22s, box-shadow 0.22s, transform 0.18s;
   position: relative;
   overflow: hidden;
 }
 .card:hover {
   border-left: 4px solid #fff;
-  box-shadow: 0 8px 32px #ff005555, 0 4px 24px #ff005544;
+  box-shadow: 0 8px 32px rgba(255,51,51,0.33), 0 4px 24px rgba(255,51,51,0.27);
   transform: translateY(-2px) scale(1.018);
 }
 .card::before {
@@ -54,18 +54,18 @@ nav {
   position: absolute;
   top: -40px; left: -40px;
   width: 80px; height: 80px;
-  background: radial-gradient(circle, #ff005544 0%, transparent 80%);
+  background: radial-gradient(circle, rgba(255,51,51,0.27) 0%, transparent 80%);
   z-index: 0;
   pointer-events: none;
   filter: blur(8px);
 }
 .card h2 {
-  color: #ff0055;
+  color: var(--accent);
   font-size: 1.25rem;
   margin-bottom: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.01em;
-  text-shadow: 0 2px 8px #ff005522;
+  text-shadow: 0 2px 8px rgba(255,51,51,0.13);
 }
 .card ul {
   color: #ccc;
@@ -80,12 +80,12 @@ nav {
   transition: color 0.18s, text-shadow 0.18s;
 }
 .card li:hover {
-  color: #ff0055;
-  text-shadow: 0 2px 8px #ff005522;
+  color: var(--accent);
+  text-shadow: 0 2px 8px rgba(255,51,51,0.13);
 }
 
 .button, button {
-  background: linear-gradient(90deg, #ff0055 60%, #c00 100%);
+  background: linear-gradient(90deg, var(--accent) 60%, #b30000 100%);
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -95,13 +95,13 @@ nav {
   text-transform: lowercase;
   font-weight: 600;
   letter-spacing: 0.02em;
-  box-shadow: 0 2px 8px #ff005544;
+  box-shadow: 0 2px 8px rgba(255,51,51,0.27);
   transition: background 0.2s, box-shadow 0.2s, transform 0.18s;
 }
 .button:hover, button:hover {
-  background: linear-gradient(90deg, #fff 60%, #ff0055 100%);
-  color: #ff0055;
-  box-shadow: 0 4px 24px #ff005544;
+  background: linear-gradient(90deg, #fff 60%, var(--accent) 100%);
+  color: var(--accent);
+  box-shadow: 0 4px 24px rgba(255,51,51,0.27);
   transform: scale(1.04);
 }
 
@@ -133,5 +133,5 @@ body.faq .faq-item p::before {
   content: '-';
   position: absolute;
   left: -1.2rem;
-  color: #ff0055;
+  color: var(--accent);
 }

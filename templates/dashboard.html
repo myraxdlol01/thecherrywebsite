@@ -29,6 +29,7 @@
       </section>
       <section>
         <h2>your servers</h2>
+        {% if guilds %}
         <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
           {% for guild in guilds %}
             <div class="server-card">
@@ -40,6 +41,10 @@
             </div>
           {% endfor %}
         </div>
+        {% else %}
+        <p>the bot isn't in any of your servers.</p>
+        <p><a href="https://discord.com/oauth2/authorize?client_id={{ DISCORD_CLIENT_ID }}&scope=bot&permissions=8" class="button" target="_blank">invite cherrybot</a></p>
+        {% endif %}
       </section>
     {% else %}
       <a href="/login" class="button">log in with discord</a>

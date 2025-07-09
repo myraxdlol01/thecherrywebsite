@@ -1,6 +1,15 @@
 body.home {
-  background: linear-gradient(135deg, #000 60%, #330000 100%);
+  background: #000;
   min-height: 100vh;
+}
+
+.home .bot-pfp {
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin: 2rem auto 1.5rem auto;
+  border-radius: 50%;
+  box-shadow: 0 0 16px rgba(255,51,51,0.5);
 }
 
 .hero {
@@ -19,7 +28,7 @@ body.home {
   letter-spacing: 0.04em;
   color: #fff;
   margin-bottom: 1.2rem;
-  text-shadow: 0 2px 24px #ff005555;
+  text-shadow: 0 2px 24px rgba(255,51,51,0.33);
 }
 
 .hero p {
@@ -47,20 +56,30 @@ body.home {
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
+.get-started {
+  animation: pulse 2s infinite;
+  box-shadow: 0 0 12px rgba(255,51,51,0.5);
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 12px rgba(255,51,51,0.5); }
+  50% { box-shadow: 0 0 20px rgba(255,51,51,0.9); }
+}
+
 .hero .button {
-  background: #ff0055;
+  background: var(--accent);
   color: #fff;
-  box-shadow: 0 2px 16px #ff005544;
+  box-shadow: 0 2px 16px rgba(255,51,51,0.27);
 }
 
 .hero .button:hover {
-  background: #c00;
+  background: #b30000;
 }
 
 .hero .button-secondary {
   background: #000;
-  color: #ff0055;
-  border: 1px solid #ff0055;
+  color: var(--accent);
+  border: 1px solid var(--accent);
 }
 
 .hero .button-secondary:hover {
@@ -86,19 +105,19 @@ body.home {
   flex: 1 1 220px;
   color: #fff;
   text-align: left;
-  border-left: 4px solid #ff0055;
+  border-left: 4px solid var(--accent);
   transition: border 0.2s, box-shadow 0.2s;
 }
 
 .feature:hover {
   border-left: 4px solid #fff;
-  box-shadow: 0 4px 24px #ff005544;
+  box-shadow: 0 4px 24px rgba(255,51,51,0.27);
 }
 
 .feature h3 {
   font-size: 1.2rem;
   margin-bottom: 0.7rem;
-  color: #ff0055;
+  color: var(--accent);
   font-weight: 600;
 }
 

@@ -1,5 +1,10 @@
+:root {
+  --primary: #000;
+  --accent: #ff3333;
+}
+
 body {
-  background: #000;
+  background: var(--primary);
   color: #fff;
   font-family: 'Inter', Arial, sans-serif;
   font-size: 1rem;
@@ -7,16 +12,7 @@ body {
   padding: 0;
   min-height: 100vh;
   letter-spacing: 0.01em;
-  transition: background 0.5s;
-  /* Subtle animated background gradient for all pages */
-  background: linear-gradient(120deg, #000 70%, #330000 100%);
-  background-size: 200% 200%;
-  animation: bodybgmove 18s ease-in-out infinite alternate;
-}
-
-@keyframes bodybgmove {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
+  transition: background 0.3s;
 }
 
 nav {
@@ -31,7 +27,7 @@ nav {
   justify-content: center;
   align-items: center;
   height: 56px;
-  box-shadow: 0 2px 16px #ff00551a;
+  box-shadow: 0 2px 16px rgba(255,51,51,0.1);
   backdrop-filter: blur(6px);
 }
 
@@ -55,9 +51,9 @@ nav a {
 }
 
 nav a.active, nav a:hover {
-  color: #ff0055;
-  border-bottom: 2px solid #ff0055;
-  text-shadow: 0 2px 8px #ff005522;
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  text-shadow: 0 2px 8px rgba(255,51,51,0.13);
 }
 
 main {
@@ -95,11 +91,10 @@ input, select, textarea {
 
 input:focus, select:focus, textarea:focus {
   outline: none;
-  border-color: #ff0055;
+  border-color: var(--accent);
 }
 
-button, .button {
-  background: #ff0055;
+  background: var(--accent);
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -111,15 +106,14 @@ button, .button {
 }
 
 button:hover, .button:hover {
-  background: #c00;
+  background: #b30000;
 }
 
-section, .card {
-  background: linear-gradient(120deg, #000 80%, #33000055 100%);
+  background: linear-gradient(120deg, var(--primary) 80%, #33000055 100%);
   border-radius: 12px;
   padding: 2.2rem;
   margin-bottom: 2rem;
-  box-shadow: 0 4px 24px #ff00551a, 0 2px 8px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 24px rgba(255,51,51,0.1), 0 2px 8px rgba(0,0,0,0.12);
   position: relative;
   overflow: hidden;
 }
@@ -128,7 +122,7 @@ section::before, .card::before {
   position: absolute;
   top: -40px; left: -40px;
   width: 80px; height: 80px;
-  background: radial-gradient(circle, #ff005544 0%, transparent 80%);
+  background: radial-gradient(circle, rgba(255,51,51,0.27) 0%, transparent 80%);
   z-index: 0;
   pointer-events: none;
   filter: blur(8px);
@@ -157,13 +151,13 @@ footer {
 /* loader spinner reused on multiple pages */
 .loading-spinner {
   border: 4px solid #222;
-  border-top: 4px solid #ff0055;
+  border-top: 4px solid var(--accent);
   border-radius: 50%;
   width: 54px;
   height: 54px;
   animation: spin 0.8s linear infinite;
   margin-bottom: 1.2rem;
-  box-shadow: 0 2px 12px #ff005544;
+  box-shadow: 0 2px 12px rgba(255,51,51,0.27);
 }
 
 @keyframes spin {
