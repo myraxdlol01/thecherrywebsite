@@ -126,7 +126,9 @@ def guild_dashboard(guild_id):
                 'kick': 'kick' in request.form
             },
             'commands': {
+
  wywhwx-codex/update-website-design-and-css
+main
                 'general': 'general_cmds' in request.form,
                 'utility': 'utility_cmds' in request.form,
                 'moderation': 'moderation_cmds' in request.form,
@@ -151,7 +153,9 @@ def guild_dashboard(guild_id):
         'log_channel': '',
         'autoroles': ['member'],
         'moderation': {'ban': True, 'kick': True},
+
  wywhwx-codex/update-website-design-and-css
+
         'commands': {
             'general': True,
             'utility': True,
@@ -165,6 +169,7 @@ def guild_dashboard(guild_id):
             'games': True,
             'ai': True
         }
+ tooc0y-codex/update-website-design-and-css
 
     }
     return render_template('guild_dashboard.html', guild_id=guild_id, settings=settings)

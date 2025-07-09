@@ -1,7 +1,6 @@
 body.home {
- wywhwx-codex/update-website-design-and-css
   background: #000;
-
+  min-height: 100vh;
 }
 
 .home .bot-pfp {
@@ -29,9 +28,7 @@ body.home {
   letter-spacing: 0.04em;
   color: #fff;
   margin-bottom: 1.2rem;
- wywhwx-codex/update-website-design-and-css
   text-shadow: 0 2px 24px rgba(255,51,51,0.33);
-
 }
 
 .hero p {
@@ -70,11 +67,9 @@ body.home {
 }
 
 .hero .button {
- wywhwx-codex/update-website-design-and-css
   background: var(--accent);
   color: #fff;
   box-shadow: 0 2px 16px rgba(255,51,51,0.27);
-
 }
 
 .hero .button:hover {
@@ -83,10 +78,8 @@ body.home {
 
 .hero .button-secondary {
   background: #000;
- wywhwx-codex/update-website-design-and-css
   color: var(--accent);
   border: 1px solid var(--accent);
-
 }
 
 .hero .button-secondary:hover {
@@ -112,25 +105,19 @@ body.home {
   flex: 1 1 220px;
   color: #fff;
   text-align: left;
- wywhwx-codex/update-website-design-and-css
   border-left: 4px solid var(--accent);
-
   transition: border 0.2s, box-shadow 0.2s;
 }
 
 .feature:hover {
   border-left: 4px solid #fff;
-wywhwx-codex/update-website-design-and-css
   box-shadow: 0 4px 24px rgba(255,51,51,0.27);
-
 }
 
 .feature h3 {
   font-size: 1.2rem;
   margin-bottom: 0.7rem;
- wywhwx-codex/update-website-design-and-css
   color: var(--accent);
-
   font-weight: 600;
 }
 
