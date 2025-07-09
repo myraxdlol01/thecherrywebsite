@@ -35,7 +35,7 @@ section::before {
 }
 
 .server-card {
-  background: linear-gradient(120deg, var(--primary) 80%, #33000055 100%);
+  background: linear-gradient(120deg, #000 80%, #33000055 100%);
   border-radius: 14px;
   box-shadow: 0 2px 16px rgba(255,51,51,0.1), 0 2px 12px #0002;
   padding: 1.4rem 1.7rem;
@@ -45,7 +45,7 @@ section::before {
   gap: 1.2rem;
   margin-bottom: 1.2rem;
   transition: box-shadow 0.22s, border 0.22s, transform 0.18s;
-  border-left: 4px solid var(--accent);
+  border-left: 4px solid #ff3333;
   position: relative;
   overflow: hidden;
 }
@@ -60,7 +60,7 @@ section::before {
   border-radius: 50%;
   background: #222;
   object-fit: cover;
-  border: 2px solid var(--accent);
+  border: 2px solid #ff3333;
   box-shadow: 0 0 0 4px #181818;
   transition: border 0.2s;
 }
@@ -78,7 +78,7 @@ section::before {
   padding: 0.5rem 1.3rem;
   font-size: 1rem;
   margin-top: 0.5rem;
-  background: linear-gradient(90deg, var(--accent) 60%, #b30000 100%);
+  background: linear-gradient(90deg, #ff3333 60%, #b30000 100%);
   box-shadow: 0 2px 8px rgba(255,51,51,0.27);
   border-radius: 6px;
   font-weight: 500;
@@ -100,7 +100,7 @@ section::before {
   margin-bottom: 1.2rem;
 }
 .guild-form section {
-  background: linear-gradient(120deg, var(--primary) 80%, #33000055 100%);
+  background: linear-gradient(120deg, #000 80%, #33000055 100%);
   border-radius: 12px;
   margin-bottom: 1.5rem;
   padding: 1.5rem 1.2rem;
@@ -121,12 +121,12 @@ section::before {
 
 /* Commands & FAQ */
 .card {
-  background: linear-gradient(120deg, var(--primary) 80%, #33000055 100%);
+  background: linear-gradient(120deg, #000 80%, #33000055 100%);
   border-radius: 14px;
   box-shadow: 0 4px 32px rgba(255,51,51,0.1), 0 2px 12px #0002;
   padding: 2.3rem 1.7rem;
   margin-bottom: 2.2rem;
-  border-left: 4px solid var(--accent);
+  border-left: 4px solid #ff3333;
   transition: border 0.22s, box-shadow 0.22s, transform 0.18s;
   position: relative;
   overflow: hidden;
@@ -147,7 +147,7 @@ section::before {
   filter: blur(8px);
 }
 .card h2 {
-  color: var(--accent);
+  color: #ff3333;
   font-size: 1.25rem;
   margin-bottom: 0.8rem;
   font-weight: 700;
@@ -167,7 +167,7 @@ section::before {
   transition: color 0.18s, text-shadow 0.18s;
 }
 .card li:hover {
-  color: var(--accent);
+  color: #ff3333;
   text-shadow: 0 2px 8px rgba(255,51,51,0.13);
 }
 
@@ -183,7 +183,7 @@ section::before {
 }
 .loading-spinner {
   border: 4px solid #222;
-  border-top: 4px solid var(--accent);
+  border-top: 4px solid #ff3333;
   border-radius: 50%;
   width: 54px;
   height: 54px;
