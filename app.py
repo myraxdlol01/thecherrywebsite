@@ -6,8 +6,8 @@ import requests
 from dotenv import load_dotenv
 
 load_dotenv()
-print('DISCORD_REDIRECT_URI:', os.environ.get('DISCORD_REDIRECT_URI'))
-os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '0'
+# Allow http redirect URIs during local development
+os.environ.setdefault('OAUTHLIB_INSECURE_TRANSPORT', '1')
 
 app = Flask(__name__)
 app.secret_key = os.getenv('FLASK_SECRET_KEY', 'dev')
@@ -20,10 +20,6 @@ OAUTH2_URL = API_BASE_URL + '/oauth2/authorize'
 TOKEN_URL = API_BASE_URL + '/oauth2/token'
 SCOPE = ['identify', 'guilds', 'applications.commands']
 DISCORD_BOT_TOKEN = os.getenv('DISCORD_BOT_TOKEN')
-
-@app.route('/static-test')
-def static_test():
-    return render_template('static_test.html')
 
 
 def make_session(token=None, state=None, scope=None):
