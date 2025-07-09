@@ -1,7 +1,7 @@
 body.dashboard, body.commands, body.faq, body.callback, body.guild-dashboard {
+wywhwx-codex/update-website-design-and-css
   background: #000;
-  min-height: 100vh;
-}
+
 
 main {
   max-width: 900px;
@@ -17,7 +17,9 @@ h1, h2 {
 section {
   background: rgba(0,0,0,0.98);
   border-radius: 16px;
+wywhwx-codex/update-website-design-and-css
   box-shadow: 0 4px 32px rgba(255,51,51,0.1), 0 2px 16px #0003;
+
   padding: 2.5rem 2.2rem;
   margin-bottom: 2.5rem;
   position: relative;
@@ -28,16 +30,20 @@ section::before {
   position: absolute;
   top: -60px; left: -60px;
   width: 120px; height: 120px;
+ wywhwx-codex/update-website-design-and-css
   background: radial-gradient(circle, rgba(255,51,51,0.27) 0%, transparent 80%);
+
   z-index: 0;
   pointer-events: none;
   filter: blur(8px);
 }
 
 .server-card {
+< wywhwx-codex/update-website-design-and-css
   background: linear-gradient(120deg, var(--primary) 80%, #33000055 100%);
   border-radius: 14px;
   box-shadow: 0 2px 16px rgba(255,51,51,0.1), 0 2px 12px #0002;
+
   padding: 1.4rem 1.7rem;
   min-width: 220px;
   display: flex;
@@ -45,12 +51,16 @@ section::before {
   gap: 1.2rem;
   margin-bottom: 1.2rem;
   transition: box-shadow 0.22s, border 0.22s, transform 0.18s;
+wywhwx-codex/update-website-design-and-css
   border-left: 4px solid var(--accent);
+
   position: relative;
   overflow: hidden;
 }
 .server-card:hover {
+wywhwx-codex/update-website-design-and-css
   box-shadow: 0 8px 32px rgba(255,51,51,0.33), 0 4px 24px rgba(255,51,51,0.27);
+
   border-left: 4px solid #fff;
   transform: translateY(-2px) scale(1.025);
 }
@@ -60,7 +70,9 @@ section::before {
   border-radius: 50%;
   background: #222;
   object-fit: cover;
+ wywhwx-codex/update-website-design-and-css
   border: 2px solid var(--accent);
+
   box-shadow: 0 0 0 4px #181818;
   transition: border 0.2s;
 }
@@ -78,8 +90,10 @@ section::before {
   padding: 0.5rem 1.3rem;
   font-size: 1rem;
   margin-top: 0.5rem;
+ wywhwx-codex/update-website-design-and-css
   background: linear-gradient(90deg, var(--accent) 60%, #b30000 100%);
   box-shadow: 0 2px 8px rgba(255,51,51,0.27);
+
   border-radius: 6px;
   font-weight: 500;
   letter-spacing: 0.02em;
@@ -100,11 +114,13 @@ section::before {
   margin-bottom: 1.2rem;
 }
 .guild-form section {
+ wywhwx-codex/update-website-design-and-css
   background: linear-gradient(120deg, var(--primary) 80%, #33000055 100%);
   border-radius: 12px;
   margin-bottom: 1.5rem;
   padding: 1.5rem 1.2rem;
   box-shadow: 0 2px 12px rgba(255,51,51,0.1), 0 1px 6px #0002;
+
   position: relative;
   overflow: hidden;
 }
@@ -113,7 +129,9 @@ section::before {
   position: absolute;
   bottom: -40px; right: -40px;
   width: 80px; height: 80px;
+wywhwx-codex/update-website-design-and-css
   background: radial-gradient(circle, rgba(255,51,51,0.27) 0%, transparent 80%);
+
   z-index: 0;
   pointer-events: none;
   filter: blur(8px);
@@ -121,19 +139,23 @@ section::before {
 
 /* Commands & FAQ */
 .card {
+wywhwx-codex/update-website-design-and-css
   background: linear-gradient(120deg, var(--primary) 80%, #33000055 100%);
   border-radius: 14px;
   box-shadow: 0 4px 32px rgba(255,51,51,0.1), 0 2px 12px #0002;
   padding: 2.3rem 1.7rem;
   margin-bottom: 2.2rem;
   border-left: 4px solid var(--accent);
+
   transition: border 0.22s, box-shadow 0.22s, transform 0.18s;
   position: relative;
   overflow: hidden;
 }
 .card:hover {
   border-left: 4px solid #fff;
+ wywhwx-codex/update-website-design-and-css
   box-shadow: 0 8px 32px rgba(255,51,51,0.33), 0 4px 24px rgba(255,51,51,0.27);
+
   transform: translateY(-2px) scale(1.018);
 }
 .card::before {
@@ -141,18 +163,24 @@ section::before {
   position: absolute;
   top: -40px; left: -40px;
   width: 80px; height: 80px;
+ wywhwx-codex/update-website-design-and-css
   background: radial-gradient(circle, rgba(255,51,51,0.27) 0%, transparent 80%);
+
   z-index: 0;
   pointer-events: none;
   filter: blur(8px);
 }
 .card h2 {
+ wywhwx-codex/update-website-design-and-css
   color: var(--accent);
+
   font-size: 1.25rem;
   margin-bottom: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.01em;
+ wywhwx-codex/update-website-design-and-css
   text-shadow: 0 2px 8px rgba(255,51,51,0.13);
+
 }
 .card ul {
   color: #ccc;
@@ -167,8 +195,11 @@ section::before {
   transition: color 0.18s, text-shadow 0.18s;
 }
 .card li:hover {
+ wywhwx-codex/update-website-design-and-css
   color: var(--accent);
   text-shadow: 0 2px 8px rgba(255,51,51,0.13);
+
+
 }
 
 /* Callback loading */
@@ -183,13 +214,17 @@ section::before {
 }
 .loading-spinner {
   border: 4px solid #222;
+wywhwx-codex/update-website-design-and-css
   border-top: 4px solid var(--accent);
+
   border-radius: 50%;
   width: 54px;
   height: 54px;
   animation: spin 0.8s linear infinite;
   margin-bottom: 1.2rem;
+ wywhwx-codex/update-website-design-and-css
   box-shadow: 0 2px 12px rgba(255,51,51,0.27);
+
 }
 @keyframes spin {
   0% { transform: rotate(0deg); }
