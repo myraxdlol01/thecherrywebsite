@@ -127,7 +127,7 @@ def guild_dashboard(guild_id):
             },
             'commands': {
 
- wywhwx-codex/update-website-design-and-css
+ 
 main
                 'general': 'general_cmds' in request.form,
                 'utility': 'utility_cmds' in request.form,
@@ -154,7 +154,7 @@ main
         'autoroles': ['member'],
         'moderation': {'ban': True, 'kick': True},
 
- wywhwx-codex/update-website-design-and-css
+ 
 
         'commands': {
             'general': True,
@@ -169,7 +169,7 @@ main
             'games': True,
             'ai': True
         }
- tooc0y-codex/update-website-design-and-css
+ 
 
     }
     return render_template('guild_dashboard.html', guild_id=guild_id, settings=settings)
