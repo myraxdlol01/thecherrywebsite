@@ -124,3 +124,24 @@ nav {
   .card { padding: 1.2rem; }
   .bot-pfp { width: 72px; height: 72px; }
 }
+
+/* FAQ layout tweaks */
+body.faq section {
+  max-width: 720px;
+  margin: 0 auto 2rem auto;
+}
+
+body.faq .faq-item {
+  margin-bottom: 1.8rem;
+}
+body.faq .faq-item p {
+  color: #fff;
+  margin-left: 1.2rem;
+  position: relative;
+}
+body.faq .faq-item p::before {
+  content: '-';
+  position: absolute;
+  left: -1.2rem;
+  color: #ff0055;
+}
