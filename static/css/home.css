@@ -1,5 +1,5 @@
 body.home {
-  background: linear-gradient(135deg, #0a0a0a 60%, #1a0a0a 100%);
+  background: linear-gradient(135deg, #000 60%, #330000 100%);
   min-height: 100vh;
 }
 
@@ -19,7 +19,7 @@ body.home {
   letter-spacing: 0.04em;
   color: #fff;
   margin-bottom: 1.2rem;
-  text-shadow: 0 2px 24px #ff333355;
+  text-shadow: 0 2px 24px #ff005555;
 }
 
 .hero p {
@@ -48,9 +48,9 @@ body.home {
 }
 
 .hero .button {
-  background: #ff3333;
+  background: #ff0055;
   color: #fff;
-  box-shadow: 0 2px 16px #ff333344;
+  box-shadow: 0 2px 16px #ff005544;
 }
 
 .hero .button:hover {
@@ -58,13 +58,13 @@ body.home {
 }
 
 .hero .button-secondary {
-  background: #181818;
-  color: #ff3333;
-  border: 1px solid #ff3333;
+  background: #000;
+  color: #ff0055;
+  border: 1px solid #ff0055;
 }
 
 .hero .button-secondary:hover {
-  background: #222;
+  background: #111;
   color: #fff;
 }
 
@@ -78,7 +78,7 @@ body.home {
 }
 
 .feature {
-  background: #151515;
+  background: #000;
   border-radius: 10px;
   box-shadow: 0 2px 12px #0002;
   padding: 2rem 1.5rem;
@@ -86,19 +86,19 @@ body.home {
   flex: 1 1 220px;
   color: #fff;
   text-align: left;
-  border-left: 4px solid #ff3333;
+  border-left: 4px solid #ff0055;
   transition: border 0.2s, box-shadow 0.2s;
 }
 
 .feature:hover {
   border-left: 4px solid #fff;
-  box-shadow: 0 4px 24px #ff333344;
+  box-shadow: 0 4px 24px #ff005544;
 }
 
 .feature h3 {
   font-size: 1.2rem;
   margin-bottom: 0.7rem;
-  color: #ff3333;
+  color: #ff0055;
   font-weight: 600;
 }
 
